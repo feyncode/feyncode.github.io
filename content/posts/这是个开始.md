@@ -8,7 +8,7 @@ authorLink: "https://github.com/feyncode"
 authorEmail: "feyncode@gmail.com"
 description: ""
 keywords: ""
-license: ""
+license: "<a rel=\"license external nofollow noopener noreferrer\" href=\"https://creativecommons.org/licenses/by-nc/4.0/\" target=\"_blank\">CC BY-NC 4.0</a>"
 comment: false
 weight: 0
 
