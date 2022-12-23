@@ -131,7 +131,7 @@
       # URL of the LOGO
       logo = "/fixit.min.svg"
       # title name
-      name = "费冰的空间"
+      name = "费冰の空间"
       # you can add extra information before the name (HTML format is supported), such as icons
       pre = ""
       # you can add extra information after the name (HTML format is supported), such as icons
