@@ -1,5 +1,5 @@
 title = "Feyncode的博客 - 每天进步一点点"
-baseURL = "http://feyncode.gitee.io/"
+baseURL = "http://feyncode.github.io/"
 # 设置默认的语言 ["en", "zh-cn", "fr", "pl", ...]
 defaultContentLanguage = "zh-cn"
 # 网站语言, 仅在这里 CN 大写 ["en", "zh-CN", "fr", "pl", ...]
