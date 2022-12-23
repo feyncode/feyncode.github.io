@@ -9,7 +9,6 @@ hasCJKLanguage = true
 
 # 更改使用 Hugo 构建网站时使用的默认主题
 theme = "FixIt"
-
 [params]
   # FixIt 主题版本
   version = "0.2.X"
@@ -107,3 +106,4 @@ theme = "FixIt"
   [markup.highlight]
     # false 是必要的设置 (https://github.com/hugo-fixit/FixIt/issues/43)
     noClasses = false
+  
