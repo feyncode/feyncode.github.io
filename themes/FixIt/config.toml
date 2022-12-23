@@ -92,7 +92,7 @@
   [params.search]
     enable = true
     # type of search engine ["lunr", "algolia"]
-    type = "lunr"
+    type = "fuse"
     # max index length of the chunked content
     contentLength = 4000
     # placeholder of the search bar
@@ -109,7 +109,17 @@
       index = ""
       appID = ""
       searchKey = ""
-
+    [params.search.fuse]
+    # FixIt 0.2.17 | 新增 https://fusejs.io/api/options.html
+    isCaseSensitive = false
+    minMatchCharLength = 2
+    findAllMatches = false
+    location = 0
+    threshold = 0.3
+    distance = 100
+    ignoreLocation = false
+    useExtendedSearch = false
+    ignoreFieldNorm = false
   # Header config
   [params.header]
     # FixIt 0.2.13 | CHANGED desktop header mode ["sticky", "normal", "auto"]
@@ -295,7 +305,7 @@
     Feishu = ""
     TryHackMe = ""
     Phone = ""
-    Email = ""
+    Email = "feyncode@gmail.com"
     RSS = true
 
   # FixIt 0.2.0 | CHANGED Page config
