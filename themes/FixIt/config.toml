@@ -92,7 +92,7 @@
   [params.search]
     enable = true
     # type of search engine ["lunr", "algolia"]
-    type = "fuse"
+    type = "lunr"
     # max index length of the chunked content
     contentLength = 4000
     # placeholder of the search bar
@@ -109,17 +109,6 @@
       index = ""
       appID = ""
       searchKey = ""
-    [params.search.fuse]
-    # FixIt 0.2.17 | 新增 https://fusejs.io/api/options.html
-    isCaseSensitive = false
-    minMatchCharLength = 2
-    findAllMatches = false
-    location = 0
-    threshold = 0.3
-    distance = 100
-    ignoreLocation = false
-    useExtendedSearch = false
-    ignoreFieldNorm = false
   # Header config
   [params.header]
     # FixIt 0.2.13 | CHANGED desktop header mode ["sticky", "normal", "auto"]
@@ -222,7 +211,10 @@
 
   # FixIt 0.2.16 | CHANGED Social config about the author
   [params.social]
-    GitHub = "https://github.com/feyncode"
+    Email = "feyncode@gmail.com"
+    GitHub = "https://github.com/feyncode/"
+    QQ = "2944962225"
+    QQGroup = "zK80jfZ0JPNd4LM-vMyPHcL3Pn2uqD7x" # https://qun.qq.com/join.html
     Linkedin = ""
     Twitter = ""
     Instagram = ""
@@ -289,8 +281,6 @@
     Ko-Fi = ""
     BuyMeaCoffee = ""
     Linktree = ""
-    QQ = "2944962225"
-    QQGroup = "zK80jfZ0JPNd4LM-vMyPHcL3Pn2uqD7x" # https://qun.qq.com/join.html
     Diaspora = ""
     CSDN = ""
     Discord = ""
@@ -305,7 +295,6 @@
     Feishu = ""
     TryHackMe = ""
     Phone = ""
-    Email = "feyncode@gmail.com"
     RSS = true
 
   # FixIt 0.2.0 | CHANGED Page config
