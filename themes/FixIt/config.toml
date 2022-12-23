@@ -511,9 +511,9 @@
         enable = false
       # FixIt 0.2.5 | NEW Utterances comment config (https://utteranc.es)
       [params.page.comment.utterances]
-        enable = false
+        enable = true
         # owner/repo
-        repo = ""
+        repo = "feyncode/hugotalks"
         issueTerm = "pathname"
         label = ""
         lightTheme = "github-light"
