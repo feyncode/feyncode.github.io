@@ -6,8 +6,8 @@ author: "feyncode"
 authorLink: "https://github.com/feyncode"
 authorEmail: "feyncode@gmail.com"
 description: ""
-keywords: ""
-password:
+#keywords: ""
+#password:
 message: 真正的大师永远都怀着一颗学徒的心
 
 weight: 0

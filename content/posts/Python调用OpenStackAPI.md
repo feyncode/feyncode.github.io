@@ -6,16 +6,17 @@ author: "feyncode"
 authorLink: "https://github.com/feyncode"
 authorEmail: "feyncode@gmail.com"
 description: ""
-keywords: ""
-password:
+#keywords: ""
+#password:
 message: 真正的大师永远都怀着一颗学徒的心
 
 weight: 0
 
 tags:
-- draft
+- openstack
+- python
 categories:
-- draft
+- openstack
 
 # 如果设为true，这篇文章将不会显示在主页上
 hiddenFromHomePage: false
