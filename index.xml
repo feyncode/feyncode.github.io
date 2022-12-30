@@ -4,9 +4,17 @@
     <link>http://feyncode.github.io/</link>
     <description>Feyncode的博客 - 每天进步一点点</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>feyncode@gmail.com (feyncode)</managingEditor>
-      <webMaster>feyncode@gmail.com (feyncode)</webMaster><lastBuildDate>Sat, 24 Dec 2022 10:29:05 &#43;0800</lastBuildDate>
+      <webMaster>feyncode@gmail.com (feyncode)</webMaster><lastBuildDate>Fri, 30 Dec 2022 15:49:19 &#43;0800</lastBuildDate>
       <atom:link href="http://feyncode.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+  <title>Python调用OpenStackAPI</title>
+  <link>http://feyncode.github.io/posts/python%E8%B0%83%E7%94%A8openstackapi/</link>
+  <pubDate>Fri, 30 Dec 2022 15:49:19 &#43;0800</pubDate>
+  <author>feyncode</author>
+  <guid>http://feyncode.github.io/posts/python%E8%B0%83%E7%94%A8openstackapi/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
   <title>Markdown</title>
   <link>http://feyncode.github.io/posts/markdown/</link>
   <pubDate>Sat, 24 Dec 2022 10:29:05 &#43;0800</pubDate>

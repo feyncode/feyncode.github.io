@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Python调用OpenStackAPI - Feyncode的博客 - 每天进步一点点</title><meta name="author" content="feyncode">
+<meta name="author-link" content="">
+<meta name="description" content="" /><meta name="keywords" content='draft' /><meta itemprop="name" content="Python调用OpenStackAPI">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2022-12-30T15:49:19+08:00" />
+<meta itemprop="dateModified" content="2022-12-30T15:49:19+08:00" />
+<meta itemprop="wordCount" content="2842">
+<meta itemprop="keywords" content="draft," /><meta property="og:title" content="Python调用OpenStackAPI" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://feyncode.github.io/posts/python%E8%B0%83%E7%94%A8openstackapi/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-12-30T15:49:19+08:00" />
+<meta property="article:modified_time" content="2022-12-30T15:49:19+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Python调用OpenStackAPI"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://feyncode.github.io/posts/python%E8%B0%83%E7%94%A8openstackapi/" /><link rel="prev" href="http://feyncode.github.io/posts/markdown/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Python调用OpenStackAPI",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/feyncode.github.io\/posts\/python%E8%B0%83%E7%94%A8openstackapi\/"
+    },"genre": "posts","keywords": "draft","wordcount":  2842 ,
+    "url": "http:\/\/feyncode.github.io\/posts\/python%E8%B0%83%E7%94%A8openstackapi\/","datePublished": "2022-12-30T15:49:19+08:00","dateModified": "2022-12-30T15:49:19+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "feyncode"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="Feyncode的博客 - 每天进步一点点"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/fixit.min.svg"
+    data-srcset="/fixit.min.svg, /fixit.min.svg 1.5x, /fixit.min.svg 2x"
+    data-sizes="auto"
+    alt="Feyncode的博客 - 每天进步一点点"
+    title="Feyncode的博客 - 每天进步一点点"/><span class="header-title-text">费冰の空间</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="Feyncode的博客 - 每天进步一点点"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/fixit.min.svg"
+    data-srcset="/fixit.min.svg, /fixit.min.svg 1.5x, /fixit.min.svg 2x"
+    data-sizes="auto"
+    alt="/fixit.min.svg"
+    title="/fixit.min.svg"/><span class="header-title-text">费冰の空间</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>Python调用OpenStackAPI</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="https://github.com/feyncode" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="/fixit.min.svg"
+    data-srcset="/fixit.min.svg, /fixit.min.svg 1.5x, /fixit.min.svg 2x"
+    data-sizes="auto"
+    alt="feyncode"
+    title="feyncode"/>&nbsp;feyncode</a></span>
+          <span class="post-category">收录于 <a href="/categories/draft/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> draft</a></span></div>
+      <div class="post-meta-line"><span title=2022-12-30&#32;15:49:19><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-12-30">2022-12-30</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 2842 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 6 分钟</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#什么是restful-api">什么是RESTful API</a></li>
+        <li><a href="#restful-api如何工作">RESTful API如何工作？</a></li>
+        <li><a href="#restful-api-客户端请求包含哪些内容">RESTful API 客户端请求包含哪些内容？</a></li>
+        <li><a href="#restful-api服务器响应包含哪些内容">RESTful API服务器响应包含哪些内容？</a></li>
+        <li><a href="#openstack-api操作">OpenStack API操作</a></li>
+        <li><a href="#获取令牌">获取令牌</a></li>
+        <li><a href="#python调用openstack-api">Python调用OpenStack API</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><blockquote>
+<p>本文将介绍如何使用 <code>python</code> 调用 <code>OpenStack API</code>。</p>
+</blockquote>
+<h3 id="什么是restful-api">什么是RESTful API</h3>
+<p>RESTful API 就是 <code>RESTful</code> 风格的 API。遵循 <code>RESTful</code> 风格开发的API被叫做 <code>RESTful API</code>。</p>
+<p>那么什么是 <code>RESTful</code>风格呢。</p>
+<p>首先需要明确的是，<strong>REST并没有一个明确的标准，而是一种设计风格</strong>，这种风格有这样几个主要特征:</p>
+<ul>
+<li>统一接口，这是 <code>RESTful</code> 设计的基础。这意味着服务器以标准格式传输信息。</li>
+<li>无状态，客户端可以以任意顺序请求资源，每个请求为无状态或独立于其他请求，这种设计让服务器每次都可以完全识别和满足请求。</li>
+<li>层次化系统，在这种架构中，客户端可以连接到客户端和服务器之间的其他授权中间方，其仍将接受来自服务器的响应。服务器也可以将请求传递到其他服务器。</li>
+</ul>
+<h3 id="restful-api如何工作">RESTful API如何工作？</h3>
+<p>RESTful API基于 <code>HTTP</code> 协议，以下是在调用 <code>REST API</code>时发生的一系列步骤:</p>
+<p>1.客户端向服务器发送请求，客户端以服务器可识别的方式设置请求格式。</p>
+<p>2.服务器对客户端进行身份验证，并确认客户端有权发送该请求。</p>
+<p>3.服务器接受请求并对其进行内部处理。</p>
+<p>4.服务器向客户端返回响应。响应包含通知客户端请求是否成功的信息。</p>
+<h3 id="restful-api-客户端请求包含哪些内容">RESTful API 客户端请求包含哪些内容？</h3>
+<p>RESTful API 要求请求包含以下主要组件:</p>
+<h5 id="唯一的资源标识符url">唯一的资源标识符(URL)</h5>
+<p>服务器通过唯一的资源标识符识别每个资源。对于 <code>REST</code>服务，服务器通常使用统一的资源定位符(URL)执行资源识别。URL指定资源的路径。URL也称为请求端点，并向服务器清晰的指明客户端请求的内容。</p>
+<h5 id="方法">方法</h5>
+<p>也就是 <code>HTTP方法</code>，这将通知服务器需要对资源执行什么操作。一般常见的 HTTP 方法有以下几种。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">方法名</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">GET</td>
+<td style="text-align:center">访问位于服务器上指定URL上的资源，查询资源的列表</td>
+</tr>
+<tr>
+<td style="text-align:center">POST</td>
+<td style="text-align:center">向服务器发送数据，在标识的资源后创建新的数据</td>
+</tr>
+<tr>
+<td style="text-align:center">PUT</td>
+<td style="text-align:center">向服务器发送数据，更新服务器上的现有资源</td>
+</tr>
+<tr>
+<td style="text-align:center">DELETE</td>
+<td style="text-align:center">使用DELETE请求删除资源</td>
+</tr>
+</tbody>
+</table>
+<h5 id="http头">HTTP头</h5>
+<p>也叫请求头或 <code>HEAD</code>，请求头时客户端和服务器之间交换的元数据，它包含了请求和响应的格式，提供有关请求状态的信息等。</p>
+<h5 id="数据">数据</h5>
+<p>也就是请求正文或者叫 <code>body</code>体，包含了HTTP方法成功运行所需的数据。</p>
+<h3 id="restful-api服务器响应包含哪些内容">RESTful API服务器响应包含哪些内容？</h3>
+<h5 id="状态码">状态码</h5>
+<p>状态码时三位的数字代码，表示请求成功或者请求出现故障。常见的状态代码有这些:</p>
+<ul>
+<li>200: 通用成功响应</li>
+<li>201: POST方法成功响应</li>
+<li>400: 服务器无法处理的不正确请求</li>
+<li>401: 未找到资源</li>
+</ul>
+<h5 id="信息正文">信息正文</h5>
+<p>服务器返回的数据实体，一般以JSON格式数据返回给客户端。</p>
+<h3 id="openstack-api操作">OpenStack API操作</h3>
+<blockquote>
+<p><a href="https://docs.openstack.org/zh_CN/api-quick-start/"target="_blank" rel="external nofollow noopener noreferrer">OpenStack API文档 — OpenStack API Documentation 文档</a></p>
+</blockquote>
+<p>OpenStack API就是遵循RESTful 风格开发的，因此我们可以根据OpenStack API说明文档来调用OpenStack RESTful 接口完成相关的操作。</p>
+<h3 id="获取令牌">获取令牌</h3>
+<p>在使用 RESTful API 管理OpenStack资源之前，需要通过认证服务认证，这里的认证服务一般指<code>Keystone</code>，对应的API为 <code>Identity</code>。</p>
+<blockquote>
+<p><a href="https://docs.openstack.org/api-ref/identity/v3/"target="_blank" rel="external nofollow noopener noreferrer">Identity API v3 (CURRENT) — keystone documentation (openstack.org)</a></p>
+</blockquote>
+<p>在 <code>Identity</code> API 说明中，我们知道，每次向 OpenStack 服务发出 REST API 请求时，都需要在请求标头中提供 <code>X-Auth-Token</code>身份验证令牌。</p>
+<p>OpenStack Identity通过定义RBAC策略规则来保护其API。</p>
+<h4 id="获取令牌的例子">获取令牌的例子</h4>
+<p>让我们用一个例子来直观的感受RESTful API的调用过程。</p>
+<p>假设我们的Openstack集群中的 <code>controller</code>节点IP地址为 <code>192.168.100.10</code>, 登录用户为<code>admin</code>，密码为<code>000000</code>，域为<code>demo</code>。</p>
+<p>那么我们应该如何获取有效的<code>token</code>呢。</p>
+<p>这里使用 APIFOX 来演示，APIFOX 是API一体化协作平台，可以用它进行接口测试。</p>
+<p>我们先来创建一个<code>post</code>示例，如下图所示:</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://gitee.com/feyncode/images/raw/master/gitee/image-20221229213322469.png"
+    data-srcset="https://gitee.com/feyncode/images/raw/master/gitee/image-20221229213322469.png, https://gitee.com/feyncode/images/raw/master/gitee/image-20221229213322469.png 1.5x, https://gitee.com/feyncode/images/raw/master/gitee/image-20221229213322469.png 2x"
+    data-sizes="auto"
+    alt="image-20221229213322469"
+    title="image-20221229213322469"/></p>
+<p>其中方法使用 <code>POST</code>，URL填写<code>http://192.168.100.10:5000/identity/v3/auth/tokens</code>，</p>
+<p>在这个示例中，请求头，也就是<code>Headers</code>，加入<code>Content-Type: application/json</code>，因为我们传入的数据是 <code>json</code>格式的，在请求正文中，也就是Body，填入以下信息:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;auth&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;identity&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;methods&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;password&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;password&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;user&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;domain&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;demo&#34;</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;admin&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;password&#34;</span><span class="p">:</span> <span class="s2">&#34;000000&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;scope&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;project&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;domain&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;demo&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;admin&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>完成后我们点击发送，就可以获得以下返回<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://gitee.com/feyncode/images/raw/master/gitee/image-20221230103230171.png"
+    data-srcset="https://gitee.com/feyncode/images/raw/master/gitee/image-20221230103230171.png, https://gitee.com/feyncode/images/raw/master/gitee/image-20221230103230171.png 1.5x, https://gitee.com/feyncode/images/raw/master/gitee/image-20221230103230171.png 2x"
+    data-sizes="auto"
+    alt="image-20221230103230171"
+    title="image-20221230103230171"/></p>
+<p>返回状态码为201，说明创建成功，接下来我们看看返回了哪些数据。</p>
+<p>首先是 <code>Body</code>，也就是信息正文，这部分包含了用户信息和所有可操作的 api 的 <code>endpoint</code>，也就是 <code>URL</code>。</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://gitee.com/feyncode/images/raw/master/gitee/image-20221230103459016.png"
+    data-srcset="https://gitee.com/feyncode/images/raw/master/gitee/image-20221230103459016.png, https://gitee.com/feyncode/images/raw/master/gitee/image-20221230103459016.png 1.5x, https://gitee.com/feyncode/images/raw/master/gitee/image-20221230103459016.png 2x"
+    data-sizes="auto"
+    alt="image-20221230103459016"
+    title="image-20221230103459016"/></p>
+<p>接着是 <code>Header</code>，这部分的 <code>X-Subject-Token</code>就是我们需要的身份验证令牌，也就是<code>Token</code>。我们可以直接复制来进行下一步操作。</p>
+<p>有了身份验证令牌，我们就可以调用 OpenStack 的 API 来完成我们需要的操作了。</p>
+<p>比如，我们想要查看 OpenStack 平台中的用户信息。</p>
+<blockquote>
+<p><a href="https://docs.openstack.org/api-ref/identity/v3/index.html?expanded=list-users-detail#users"target="_blank" rel="external nofollow noopener noreferrer">Identity API v3 (CURRENT) — keystone documentation (openstack.org)</a></p>
+</blockquote>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://gitee.com/feyncode/images/raw/master/gitee/image-20221230104359284.png"
+    data-srcset="https://gitee.com/feyncode/images/raw/master/gitee/image-20221230104359284.png, https://gitee.com/feyncode/images/raw/master/gitee/image-20221230104359284.png 1.5x, https://gitee.com/feyncode/images/raw/master/gitee/image-20221230104359284.png 2x"
+    data-sizes="auto"
+    alt="image-20221230104359284"
+    title="image-20221230104359284"/></p>
+<p>我们可以发送 <code>GET</code> 请求来完成这一操作。</p>
+<p>在进行这一操作前，我们需要明确以下几个要素</p>
+<ul>
+<li>URL： http://192.168.100.10:5000/v3/users</li>
+<li>HTTP方法：<code>GET</code></li>
+<li>Header： <code>X-Auth-Token: token</code></li>
+<li>Body: <code>Null</code></li>
+</ul>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://gitee.com/feyncode/images/raw/master/gitee/image-20221230104612378.png"
+    data-srcset="https://gitee.com/feyncode/images/raw/master/gitee/image-20221230104612378.png, https://gitee.com/feyncode/images/raw/master/gitee/image-20221230104612378.png 1.5x, https://gitee.com/feyncode/images/raw/master/gitee/image-20221230104612378.png 2x"
+    data-sizes="auto"
+    alt="image-20221230104612378"
+    title="image-20221230104612378"/></p>
+<p>可以看到，这样的请求被OpenStack API 接受并正确的处理，返回的状态码为200，返回的<code>Body</code>中，用户信息以<code>json</code>格式显示。</p>
+<p>在经过这样几个例子之后，如何使用Python进行调用就变得很容易了。</p>
+<h3 id="python调用openstack-api">Python调用OpenStack API</h3>
+<p>首先打开Pycharm，这是一个Python IDE，在Pycharm中，我们需要使用Python来复现之前的操作。</p>
+<p>需要用到的库有<code>json</code>和<code>requests</code>，这两个库将帮助我们处理json格式的数据和发送HTTP请求。</p>
+<p>第一步我们需要获取身份验证令牌，也就是<code>Token</code>。</p>
+<p>编写以下Python文件:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span><span class="o">,</span><span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># URL</span>
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;http://192.168.100.10:5000/v3/auth/tokens&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 请求正文，Body</span>
+</span></span><span class="line"><span class="cl"><span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;auth&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;identity&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;methods&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;password&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;password&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;user&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;domain&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="s2">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;demo&#34;</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;admin&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;password&#34;</span><span class="p">:</span> <span class="s2">&#34;000000&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;scope&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;project&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;domain&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;demo&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;admin&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 请求头，Header</span>
+</span></span><span class="line"><span class="cl"><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Content-Type&#34;</span><span class="p">:</span> <span class="s2">&#34;application/json&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 发送HTTP方法为POST</span>
+</span></span><span class="line"><span class="cl"><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">),</span> <span class="n">headers</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 输出返回的Header中的token</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&#34;X-Subject-Token&#34;</span><span class="p">])</span>
+</span></span></code></pre></div><p>运行的输出就是我们需要的身份验证令牌<code>Token</code>。</p>
+<p>那么接下来，我们如何去使用 <code>Token</code>来调用其他的OpenStack API呢。</p>
+<p>首先我们需要知道OpenStack组件的API地址，也就是<code>URL</code>，在OpenStack平台<code>controller</code>节点界面中键入以下命令:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">openstack endpoint list -c <span class="s1">&#39;Service Name&#39;</span> -c <span class="s1">&#39;URL&#39;</span>
+</span></span></code></pre></div><p>可以看到以下输出:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">+--------------+-----------------------------+
+</span></span><span class="line"><span class="cl"><span class="p">|</span> Service Name <span class="p">|</span> URL                         <span class="p">|</span>
+</span></span><span class="line"><span class="cl">+--------------+-----------------------------+
+</span></span><span class="line"><span class="cl"><span class="p">|</span> neutron      <span class="p">|</span> http://controller:9696      <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> nova         <span class="p">|</span> http://controller:8774/v2.1 <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> placement    <span class="p">|</span> http://controller:8778      <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> glance       <span class="p">|</span> http://controller:9292      <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> neutron      <span class="p">|</span> http://controller:9696      <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> neutron      <span class="p">|</span> http://controller:9696      <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> keystone     <span class="p">|</span> http://controller:5000/v3/  <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> nova         <span class="p">|</span> http://controller:8774/v2.1 <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> glance       <span class="p">|</span> http://controller:9292      <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> keystone     <span class="p">|</span> http://controller:5000/v3/  <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> placement    <span class="p">|</span> http://controller:8778      <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> nova         <span class="p">|</span> http://controller:8774/v2.1 <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> keystone     <span class="p">|</span> http://controller:5000/v3/  <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> glance       <span class="p">|</span> http://controller:9292      <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> placement    <span class="p">|</span> http://controller:8778      <span class="p">|</span>
+</span></span><span class="line"><span class="cl">+--------------+-----------------------------+
+</span></span></code></pre></div><p>这就是当前OpenStack平台中API的<code>URL</code>。</p>
+<p>我们试着查询OpenStack平台中的用户数据，编写以下python代码</p>
+<pre tabindex="0"><code class="language-pyrhon" data-lang="pyrhon">class user:
+    def __init__(self,token):
+        self.url = f&#34;http://192.168.100.10:5000/v3/users&#34;
+        self.headers = {
+            &#34;X-Auth-Token&#34;: token
+        }
+    def list(self):
+        response = requests.get(self.url, headers=self.headers)
+        return response.json()
+
+if __name__ == &#39;__main__&#39;:
+    user = user(response.headers[&#34;X-Subject-Token&#34;])
+    userlist = user.list()
+    for i in userlist[&#39;users&#39;]:
+        print(i)
+</code></pre><p>其中<code>response.headers[&quot;X-Subject-Token&quot;]</code>就是我们之前拿到的<code>Token</code>，你可以直接复制使用之前获取的Token。</p>
+<p>输出的结果如下:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39;links&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;self&#39;</span><span class="p">:</span> <span class="s1">&#39;http://192.168.100.10:5000/v3/users/a25fd183981a4c8393dca267a149e3b9&#39;</span><span class="p">},</span> <span class="s1">&#39;domain_id&#39;</span><span class="p">:</span> <span class="s1">&#39;c9a6a175f6614182a72cf2ea13915c29&#39;</span><span class="p">,</span> <span class="s1">&#39;enabled&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;options&#39;</span><span class="p">:</span> <span class="p">{},</span> <span class="s1">&#39;default_project_id&#39;</span><span class="p">:</span> <span class="s1">&#39;5271453457a441f7afe80175b4bcc830&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;a25fd183981a4c8393dca267a149e3b9&#39;</span><span class="p">,</span> <span class="s1">&#39;password_expires_at&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="s1">&#39;password_expires_at&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;demo&#39;</span><span class="p">,</span> <span class="s1">&#39;links&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;self&#39;</span><span class="p">:</span> <span class="s1">&#39;http://192.168.100.10:5000/v3/users/1b83726b7b60402d929fb1d411d277c1&#39;</span><span class="p">},</span> <span class="s1">&#39;domain_id&#39;</span><span class="p">:</span> <span class="s1">&#39;c9a6a175f6614182a72cf2ea13915c29&#39;</span><span class="p">,</span> <span class="s1">&#39;enabled&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;1b83726b7b60402d929fb1d411d277c1&#39;</span><span class="p">,</span> <span class="s1">&#39;options&#39;</span><span class="p">:</span> <span class="p">{}}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="s1">&#39;password_expires_at&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;glance&#39;</span><span class="p">,</span> <span class="s1">&#39;links&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;self&#39;</span><span class="p">:</span> <span class="s1">&#39;http://192.168.100.10:5000/v3/users/80132166cf7e43bdbe22b155870caca5&#39;</span><span class="p">},</span> <span class="s1">&#39;domain_id&#39;</span><span class="p">:</span> <span class="s1">&#39;c9a6a175f6614182a72cf2ea13915c29&#39;</span><span class="p">,</span> <span class="s1">&#39;enabled&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;80132166cf7e43bdbe22b155870caca5&#39;</span><span class="p">,</span> <span class="s1">&#39;options&#39;</span><span class="p">:</span> <span class="p">{}}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="s1">&#39;password_expires_at&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;placement&#39;</span><span class="p">,</span> <span class="s1">&#39;links&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;self&#39;</span><span class="p">:</span> <span class="s1">&#39;http://192.168.100.10:5000/v3/users/8bb206274d9f419aafcb302a4c62cc23&#39;</span><span class="p">},</span> <span class="s1">&#39;domain_id&#39;</span><span class="p">:</span> <span class="s1">&#39;c9a6a175f6614182a72cf2ea13915c29&#39;</span><span class="p">,</span> <span class="s1">&#39;enabled&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;8bb206274d9f419aafcb302a4c62cc23&#39;</span><span class="p">,</span> <span class="s1">&#39;options&#39;</span><span class="p">:</span> <span class="p">{}}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="s1">&#39;password_expires_at&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;nova&#39;</span><span class="p">,</span> <span class="s1">&#39;links&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;self&#39;</span><span class="p">:</span> <span class="s1">&#39;http://192.168.100.10:5000/v3/users/2bae281a78ae4964bd753370f8be64c4&#39;</span><span class="p">},</span> <span class="s1">&#39;domain_id&#39;</span><span class="p">:</span> <span class="s1">&#39;c9a6a175f6614182a72cf2ea13915c29&#39;</span><span class="p">,</span> <span class="s1">&#39;enabled&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;2bae281a78ae4964bd753370f8be64c4&#39;</span><span class="p">,</span> <span class="s1">&#39;options&#39;</span><span class="p">:</span> <span class="p">{}}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="s1">&#39;password_expires_at&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;neutron&#39;</span><span class="p">,</span> <span class="s1">&#39;links&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;self&#39;</span><span class="p">:</span> <span class="s1">&#39;http://192.168.100.10:5000/v3/users/276840fa4c9f43e6becc63c044a03af7&#39;</span><span class="p">},</span> <span class="s1">&#39;domain_id&#39;</span><span class="p">:</span> <span class="s1">&#39;c9a6a175f6614182a72cf2ea13915c29&#39;</span><span class="p">,</span> <span class="s1">&#39;enabled&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;276840fa4c9f43e6becc63c044a03af7&#39;</span><span class="p">,</span> <span class="s1">&#39;options&#39;</span><span class="p">:</span> <span class="p">{}}</span>
+</span></span></code></pre></div><p>现在已经明白如何使用Python调用OpenStack API了吧。</p>
+<p>如果想要调用OpenStack平台其他组件的API，只需要查阅API文档，根据其不同方法编写对应的Python代码即可。</p></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=303030-12-30&#32;15:49:19>更新于 2022-12-30&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://feyncode.github.io/posts/python%E8%B0%83%E7%94%A8openstackapi/" data-title="Python调用OpenStackAPI" data-hashtags="draft"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://feyncode.github.io/posts/python%E8%B0%83%E7%94%A8openstackapi/" data-hashtag="draft"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://feyncode.github.io/posts/python%E8%B0%83%E7%94%A8openstackapi/" data-title="Python调用OpenStackAPI"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/draft/">draft</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/posts/markdown/" class="prev" rel="prev" title="Markdown"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Markdown</a></div>
+</div>
+<div id="comments"><div id="utterances" class="comment"></div><noscript>
+        Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/" rel="external nofollow noopener noreferrer">Utterances</a>.
+      </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.108.0">Hugo</a> 强力驱动 
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">
+              <a href="/">feyncode</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/lunr/lunr.min.js" defer></script><script src="/lib/lunr/lunr.stemmer.support.min.js" defer></script><script src="/lib/lunr/lunr.zh.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/twemoji/twemoji.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"feyncode/hugotalks"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"search":{"highlightTag":"em","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":30},"twemoji":true};</script><script src="/js/theme.min.js" defer></script></body>
+</html>
