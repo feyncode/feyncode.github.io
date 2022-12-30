@@ -141,7 +141,7 @@ OpenStack Identity通过定义RBAC策略规则来保护其API。
 
 我们先来创建一个`post`示例，如下图所示:
 
-![Python调用OpenStack API_客户端](https://s2.51cto.com/images/blog/202212/30145452_63ae8b3ce934161480.png?x-oss-process=image/watermark,size_14,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184)
+![image-20221229213322469](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/753c7e9e4b5f46fba39d7a6636265c36~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp)
 
 其中方法使用 `POST`，URL填写`http://192.168.100.10:5000/identity/v3/auth/tokens`，
 
@@ -176,13 +176,13 @@ OpenStack Identity通过定义RBAC策略规则来保护其API。
 }
 ~~~
 
-完成后我们点击发送，就可以获得以下返回![Python调用OpenStack API_客户端_02](https://s2.51cto.com/images/blog/202212/30145452_63ae8b3ce1b9d92748.png?x-oss-process=image/watermark,size_14,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184)
+完成后我们点击发送，就可以获得以下返回![image-20221230103230171](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/055b11f3d8c3426abae122895b03459d~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp)
 
 返回状态码为201，说明创建成功，接下来我们看看返回了哪些数据。
 
 首先是 `Body`，也就是信息正文，这部分包含了用户信息和所有可操作的 api 的 `endpoint`，也就是 `URL`。
 
-![Python调用OpenStack API_服务器_03](https://s2.51cto.com/images/blog/202212/30145452_63ae8b3ce7c6f41918.png?x-oss-process=image/watermark,size_14,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184)
+![image-20221230103459016](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/13b35d8b8d604251aa954f0c1bac1f3a~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp)
 
 接着是 `Header`，这部分的 `X-Subject-Token`就是我们需要的身份验证令牌，也就是`Token`。我们可以直接复制来进行下一步操作。
 
@@ -192,7 +192,7 @@ OpenStack Identity通过定义RBAC策略规则来保护其API。
 
 > [Identity API v3 (CURRENT) — keystone documentation (openstack.org)](https://docs.openstack.org/api-ref/identity/v3/index.html?expanded=list-users-detail#users)
 
-![Python调用OpenStack API_客户端_04](https://s2.51cto.com/images/blog/202212/30145453_63ae8b3d08f7291290.png?x-oss-process=image/watermark,size_14,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184)
+![image-20221230104359284](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/363e0f74d7744f049bd4936ef8961c2c~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp)
 
 我们可以发送 `GET` 请求来完成这一操作。
 
@@ -203,7 +203,7 @@ OpenStack Identity通过定义RBAC策略规则来保护其API。
 - Header： `X-Auth-Token: token`
 - Body: `Null`
 
-![Python调用OpenStack API_API_05](https://s2.51cto.com/images/blog/202212/30145452_63ae8b3ce4a9957533.png?x-oss-process=image/watermark,size_14,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184)
+![image-20221230104612378](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/429c760b97ab4b0d961fd76b16e35c1d~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp)
 
 可以看到，这样的请求被OpenStack API 接受并正确的处理，返回的状态码为200，返回的`Body`中，用户信息以`json`格式显示。
 
