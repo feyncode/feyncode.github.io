@@ -1,0 +1,32 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>python - 分类 - Feyncode的博客 - 每天进步一点点</title>
+    <link>http://feyncode.github.io/categories/python/</link>
+    <description>python - 分类 - Feyncode的博客 - 每天进步一点点</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>feyncode@gmail.com (feyncode)</managingEditor>
+      <webMaster>feyncode@gmail.com (feyncode)</webMaster><lastBuildDate>Wed, 01 Feb 2023 09:48:11 &#43;0800</lastBuildDate><atom:link href="http://feyncode.github.io/categories/python/" rel="self" type="application/rss+xml" /><item>
+  <title>Python运维开发用户管理</title>
+  <link>http://feyncode.github.io/posts/python%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/</link>
+  <pubDate>Wed, 01 Feb 2023 09:48:11 &#43;0800</pubDate>
+  <author>feyncode</author>
+  <guid>http://feyncode.github.io/posts/python%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>Python运维开发云主机类型管理</title>
+  <link>http://feyncode.github.io/posts/python%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91%E4%BA%91%E4%B8%BB%E6%9C%BA%E7%B1%BB%E5%9E%8B%E7%AE%A1%E7%90%86/</link>
+  <pubDate>Wed, 01 Feb 2023 09:48:04 &#43;0800</pubDate>
+  <author>feyncode</author>
+  <guid>http://feyncode.github.io/posts/python%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91%E4%BA%91%E4%B8%BB%E6%9C%BA%E7%B1%BB%E5%9E%8B%E7%AE%A1%E7%90%86/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>Python开发命令行工具</title>
+  <link>http://feyncode.github.io/posts/python%E5%BC%80%E5%8F%91%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7/</link>
+  <pubDate>Wed, 01 Feb 2023 09:45:03 &#43;0800</pubDate>
+  <author>feyncode</author>
+  <guid>http://feyncode.github.io/posts/python%E5%BC%80%E5%8F%91%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7/</guid>
+  <description><![CDATA[]]></description>
+</item>
+</channel>
+</rss>

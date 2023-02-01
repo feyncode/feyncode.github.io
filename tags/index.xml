@@ -4,7 +4,15 @@
     <link>http://feyncode.github.io/tags/</link>
     <description>Tags - 标签 - Feyncode的博客 - 每天进步一点点</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>feyncode@gmail.com (feyncode)</managingEditor>
-      <webMaster>feyncode@gmail.com (feyncode)</webMaster><lastBuildDate>Wed, 01 Feb 2023 08:48:56 &#43;0800</lastBuildDate><atom:link href="http://feyncode.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>feyncode@gmail.com (feyncode)</webMaster><lastBuildDate>Wed, 01 Feb 2023 09:48:11 &#43;0800</lastBuildDate><atom:link href="http://feyncode.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+  <title>openstack,python</title>
+  <link>http://feyncode.github.io/tags/openstackpython/</link>
+  <pubDate>Wed, 01 Feb 2023 09:48:11 &#43;0800</pubDate>
+  <author>feyncode</author>
+  <guid>http://feyncode.github.io/tags/openstackpython/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
   <title>openstack</title>
   <link>http://feyncode.github.io/tags/openstack/</link>
   <pubDate>Wed, 01 Feb 2023 08:48:56 &#43;0800</pubDate>

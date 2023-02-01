@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Python运维开发云主机类型管理 - Feyncode的博客 - 每天进步一点点</title><meta name="author" content="feyncode">
+<meta name="author-link" content="">
+<meta name="description" content="" /><meta name="keywords" content='openstack,python' /><meta itemprop="name" content="Python运维开发云主机类型管理">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2023-02-01T09:48:04+08:00" />
+<meta itemprop="dateModified" content="2023-02-01T09:48:04+08:00" />
+<meta itemprop="wordCount" content="1916">
+<meta itemprop="keywords" content="openstack,python," /><meta property="og:title" content="Python运维开发云主机类型管理" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://feyncode.github.io/posts/python%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91%E4%BA%91%E4%B8%BB%E6%9C%BA%E7%B1%BB%E5%9E%8B%E7%AE%A1%E7%90%86/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-02-01T09:48:04+08:00" />
+<meta property="article:modified_time" content="2023-02-01T09:48:04+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Python运维开发云主机类型管理"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://feyncode.github.io/posts/python%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91%E4%BA%91%E4%B8%BB%E6%9C%BA%E7%B1%BB%E5%9E%8B%E7%AE%A1%E7%90%86/" /><link rel="prev" href="http://feyncode.github.io/posts/python%E5%BC%80%E5%8F%91%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7/" /><link rel="next" href="http://feyncode.github.io/posts/python%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Python运维开发云主机类型管理",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/feyncode.github.io\/posts\/python%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91%E4%BA%91%E4%B8%BB%E6%9C%BA%E7%B1%BB%E5%9E%8B%E7%AE%A1%E7%90%86\/"
+    },"genre": "posts","keywords": "openstack,python","wordcount":  1916 ,
+    "url": "http:\/\/feyncode.github.io\/posts\/python%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91%E4%BA%91%E4%B8%BB%E6%9C%BA%E7%B1%BB%E5%9E%8B%E7%AE%A1%E7%90%86\/","datePublished": "2023-02-01T09:48:04+08:00","dateModified": "2023-02-01T09:48:04+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "feyncode"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="Feyncode的博客 - 每天进步一点点"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/fixit.min.svg"
+    data-srcset="/fixit.min.svg, /fixit.min.svg 1.5x, /fixit.min.svg 2x"
+    data-sizes="auto"
+    alt="Feyncode的博客 - 每天进步一点点"
+    title="Feyncode的博客 - 每天进步一点点"/><span class="header-title-text">费冰の空间</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="Feyncode的博客 - 每天进步一点点"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/fixit.min.svg"
+    data-srcset="/fixit.min.svg, /fixit.min.svg 1.5x, /fixit.min.svg 2x"
+    data-sizes="auto"
+    alt="/fixit.min.svg"
+    title="/fixit.min.svg"/><span class="header-title-text">费冰の空间</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>Python运维开发云主机类型管理</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="https://github.com/feyncode" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="/fixit.min.svg"
+    data-srcset="/fixit.min.svg, /fixit.min.svg 1.5x, /fixit.min.svg 2x"
+    data-sizes="auto"
+    alt="feyncode"
+    title="feyncode"/>&nbsp;feyncode</a></span>
+          <span class="post-category">收录于 <a href="/categories/python/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> python</a></span></div>
+      <div class="post-meta-line"><span title=2023-02-01&#32;09:48:04><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-01">2023-02-01</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 1916 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 4 分钟</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#python开发云主机类型管理脚本">python开发云主机类型管理脚本</a></li>
+        <li><a href="#基础">基础</a></li>
+        <li><a href="#创建解析对象">创建解析对象</a></li>
+        <li><a href="#解析位置参数">解析位置参数</a></li>
+        <li><a href="#解析可选参数">解析可选参数</a></li>
+        <li><a href="#填入程序主体">填入程序主体</a></li>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h3 id="python开发云主机类型管理脚本">python开发云主机类型管理脚本</h3>
+<p>开发flavor_manager.py程序，来完成云主机类型管理的相关操作。</p>
+<p>该文件拥有以下功能:</p>
+<ul>
+<li>根据命令行参数，创建一个云主机类型，返回response。</li>
+<li>查询admin账户下所有的云主机类型</li>
+<li>查询给定具体名称的云主机类型</li>
+<li>支持删除指定的id云主机类型</li>
+</ul>
+<p>操作并不复杂，程序也相对较简单，大致分为两大部分</p>
+<p>一，解析传入的参数，将参数转化为程序使用的变量</p>
+<p>二，通过openstacksdk，使用获得的变量完成相应行为。</p>
+<h3 id="基础">基础</h3>
+<p>首先构建我们的程序主题，肯定是需要argparse模块，那么我们先把argparse模块添加进我们的程序。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">argparse</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">parse</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">args</span> <span class="o">=</span> <span class="n">parse</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+</span></span></code></pre></div><p>这做不了什么，也不能满足题目的要求，所以我做出改变，既然我们需要让程序拥有四种功能，那肯定要写出四个相应的实现方法，而参数解析是必须的，那么我们需要这样一个操作，当我们首先解析出需要的操作时，就进行反馈，将继续的参数解析到相应的功能里，这样就把四种功能分开，整个程序会变得很整洁。</p>
+<h3 id="创建解析对象">创建解析对象</h3>
+<p>再回来看看题目，四种功能使用位置参数来分别区分，既然如此，我们第一个参数就设置为 <code>option</code> ，用来识别程序需要完成的功能，之后将带入相应的解析中，并调取需要的程序来完成相应的行为。</p>
+<p>整体思路就是这样，可能你还没跟上。那么让我来演示第一步的解析：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">argparse</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">parse</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">parse</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;option&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">args</span> <span class="o">=</span> <span class="n">parse</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">option</span><span class="p">)</span>
+</span></span></code></pre></div><p>可以预见，这一步后，程序中被添加进了一个必须的参数，也就是我们需要的位置参数，如果你输入 <code>create</code>，那么程序中的<code>args.option</code>就设置为<code>create</code>，诸如此类，<strong>getall</strong> ,<strong>get</strong>,<strong>delete</strong>。也就很好区分了，接下来我们需要一个判断，在不同的判断中，我们读入不同的参数。</p>
+<h3 id="解析位置参数">解析位置参数</h3>
+<p>还是一步一步来吧，我们先以<code>create</code>为例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">argparse</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">parse</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">parse</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;option&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parse</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-n&#39;</span><span class="p">,</span> <span class="s1">&#39;--name&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;New flavor name&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parse</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-m&#39;</span><span class="p">,</span> <span class="s1">&#39;--ram&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;size-mb&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Memory size in MB (DEFAULT 256M)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parse</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--vcpus&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;vcpus&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Number of vcpus (default 1)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parse</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="s1">&#39;--disk&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;size-gb&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Disk size in GB (default 0G)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parse</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-id&#39;</span><span class="p">,</span> <span class="s1">&#39;--id&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Unique flavor ID&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">args</span> <span class="o">=</span> <span class="n">parse</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">option</span> <span class="o">==</span> <span class="s1">&#39;create&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;i will create new flavor&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>可以看到，我已经把create这个行为剥离开来，接下来想必你已经知道我要做什么了。让我们把四种功能补全看看。</p>
+<h3 id="解析可选参数">解析可选参数</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">argparse</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">parse</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">parse</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;option&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parse</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-n&#39;</span><span class="p">,</span> <span class="s1">&#39;--name&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;New flavor name&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parse</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-m&#39;</span><span class="p">,</span> <span class="s1">&#39;--ram&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;size-mb&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Memory size in MB (DEFAULT 256M)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parse</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--vcpus&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;vcpus&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Number of vcpus (default 1)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parse</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="s1">&#39;--disk&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;size-gb&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Disk size in GB (default 0G)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parse</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-id&#39;</span><span class="p">,</span> <span class="s1">&#39;--id&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Unique flavor ID&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">args</span> <span class="o">=</span> <span class="n">parse</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">option</span> <span class="o">==</span> <span class="s1">&#39;create&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;i will create new flavor&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">option</span> <span class="o">==</span> <span class="s1">&#39;getall&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;i will inquire all flavor&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">option</span> <span class="o">==</span> <span class="s1">&#39;get&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;i will get flavor by id&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">option</span> <span class="o">==</span> <span class="s1">&#39;delete&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;i will delete flavor by id&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>很显然，我还没有把具体实现填入，仅仅只是更改了输出用以区分，检查一下我们是否解析了所有的参数。</p>
+<h3 id="填入程序主体">填入程序主体</h3>
+<p>因为接下来我要将实现填入了，这是程序中较为重要的一步。</p>
+<ul>
+<li>-n指定flavor名称，数据类型为字符串</li>
+<li>-m指定内存大小，数据类型为int，单位M</li>
+<li>-v指定虚拟cpu个数，数据类型为int</li>
+<li>-d指定磁盘大小，内存大小类型为int，单位G</li>
+<li>-id指定id，类型为字符串</li>
+</ul>
+<p>在程序中我们已经做到了这些参数的解析，那么我们先填入create的实现，程序变成了下面这样。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">argparse</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">opentack</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">parse</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">parse</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;option&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parse</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-n&#39;</span><span class="p">,</span> <span class="s1">&#39;--name&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;New flavor name&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parse</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-m&#39;</span><span class="p">,</span> <span class="s1">&#39;--ram&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;size-mb&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Memory size in MB (DEFAULT 256M)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parse</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--vcpus&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;vcpus&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Number of vcpus (default 1)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parse</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="s1">&#39;--disk&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;size-gb&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Disk size in GB (default 0G)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parse</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-id&#39;</span><span class="p">,</span> <span class="s1">&#39;--id&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Unique flavor ID&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">conn</span> <span class="o">=</span> <span class="n">opentack</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">auth_url</span><span class="o">=</span><span class="s1">&#39;http://192.168.10.25:5000&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">username</span><span class="o">=</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">password</span><span class="o">=</span><span class="s1">&#39;passwordadmin&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">project_name</span><span class="o">=</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">project_domain_name</span><span class="o">=</span><span class="s1">&#39;Default&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">create_flavor</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">ram</span><span class="p">,</span> <span class="n">vcpus</span><span class="p">,</span> <span class="n">disk</span><span class="p">,</span> <span class="n">flavorid</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">response</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">create_flavor</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">ram</span><span class="p">,</span> <span class="n">vcpus</span><span class="p">,</span> <span class="n">disk</span><span class="p">,</span> <span class="n">flavorid</span><span class="o">=</span><span class="n">flavorid</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">response</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">args</span> <span class="o">=</span> <span class="n">parse</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">option</span> <span class="o">==</span> <span class="s1">&#39;create&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">create_flavor</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">ram</span><span class="p">,</span><span class="n">args</span><span class="o">.</span><span class="n">vcpus</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">disk</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">option</span> <span class="o">==</span> <span class="s1">&#39;getall&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;i will inquire all flavor&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">option</span> <span class="o">==</span> <span class="s1">&#39;get&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;i will get flavor by id&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">option</span> <span class="o">==</span> <span class="s1">&#39;delete&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;i will delete flavor by id&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>我希望你还能看懂，在这一步，我导入了openstack这个包，我创建了一个连接对象<code>conn</code>，这样我就能操作openstack，我写入了一个方法<code>create_flavor</code>并指定了它可以传入的参数，当option读入create时，将会调用这个方法，并传入相应的参数。由方法中的连接对象调取create_flaovr方法来完成最后的创建，完成后，这个方法将response返回并打印到终端。</p>
+<p>我将运行的结果贴在下方：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">(</span><span class="n">venv</span><span class="p">)</span> <span class="n">PS</span> <span class="n">D</span><span class="p">:</span>\<span class="n">Python</span><span class="o">&gt;</span> <span class="n">python</span> <span class="o">.</span>\<span class="n">demo3</span><span class="o">.</span><span class="n">py</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">flavor_small</span> <span class="o">-</span><span class="n">m</span> <span class="mi">1024</span> <span class="o">-</span><span class="n">v</span> <span class="mi">1</span> <span class="o">-</span><span class="n">d</span> <span class="mi">10</span> <span class="o">-</span><span class="nb">id</span> <span class="mi">100000</span>
+</span></span><span class="line"><span class="cl"><span class="n">openstack</span><span class="o">.</span><span class="n">compute</span><span class="o">.</span><span class="n">v2</span><span class="o">.</span><span class="n">flavor</span><span class="o">.</span><span class="n">Flavor</span><span class="p">(</span><span class="n">disk</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">OS</span><span class="o">-</span><span class="n">FLV</span><span class="o">-</span><span class="n">EXT</span><span class="o">-</span><span class="n">DATA</span><span class="p">:</span><span class="n">ephemeral</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span> <span class="n">os</span><span class="o">-</span><span class="n">flavor</span><span class="o">-</span><span class="n">access</span><span class="p">:</span><span class="n">is_public</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">flavor_small</span><span class="p">,</span> <span class="n">ram</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">rxtx_factor</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">swap</span><span class="o">=</span><span class="p">,</span> <span class="n">vcpus</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">OS</span><span class="o">-</span><span class="n">FLV</span><span class="o">-</span><span class="n">DISABLED</span><span class="p">:</span><span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">extra_specs</span><span class="o">=</span><span class="p">{},</span> <span class="n">location</span><span class="o">=</span><span class="n">Munch</span><span class="p">({</span><span class="s1">&#39;cloud&#39;</span><span class="p">:</span> <span class="s1">&#39;zed&#39;</span><span class="p">,</span> <span class="s1">&#39;region_name&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;zone&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;project&#39;</span><span class="p">:</span> <span class="n">Munch</span><span class="p">({</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;80074c3b4d09419e87ba0b8c05ce5164&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39;domain_id&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;domain_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Default&#39;</span><span class="p">})}))</span>
+</span></span></code></pre></div><p>很明显，这是一个正确的输出，如此，我就不废话了，将所有功能快速的填入，只需要根据功能创建剩余的三个方法即可。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">argparse</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">openstack</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">parse</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">parse</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;option&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parse</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-n&#39;</span><span class="p">,</span> <span class="s1">&#39;--name&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;New flavor name&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parse</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-m&#39;</span><span class="p">,</span> <span class="s1">&#39;--ram&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;size-mb&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Memory size in MB (DEFAULT 256M)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parse</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--vcpus&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;vcpus&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Number of vcpus (default 1)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parse</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="s1">&#39;--disk&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;size-gb&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Disk size in GB (default 0G)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parse</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-id&#39;</span><span class="p">,</span> <span class="s1">&#39;--id&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Unique flavor ID&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">conn</span> <span class="o">=</span> <span class="n">openstack</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">auth_url</span><span class="o">=</span><span class="s1">&#39;http://192.168.10.25:5000&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">username</span><span class="o">=</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">password</span><span class="o">=</span><span class="s1">&#39;passwordadmin&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">project_name</span><span class="o">=</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">project_domain_name</span><span class="o">=</span><span class="s1">&#39;Default&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">create_flavor</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">ram</span><span class="p">,</span> <span class="n">vcpus</span><span class="p">,</span> <span class="n">disk</span><span class="p">,</span> <span class="n">flavorid</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">response</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">create_flavor</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">ram</span><span class="p">,</span> <span class="n">vcpus</span><span class="p">,</span> <span class="n">disk</span><span class="p">,</span> <span class="n">flavorid</span><span class="o">=</span><span class="n">flavorid</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">response</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">getall_flavor</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">response</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">list_flavors</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">response</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_flavor</span><span class="p">(</span><span class="nb">id</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">response</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">get_flavor_by_id</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">response</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">delete_flavor</span><span class="p">(</span><span class="nb">id</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">response</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">delete_flavor</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">response</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">args</span> <span class="o">=</span> <span class="n">parse</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">option</span> <span class="o">==</span> <span class="s1">&#39;create&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">create_flavor</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">ram</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">vcpus</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">disk</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">option</span> <span class="o">==</span> <span class="s1">&#39;getall&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">getall_flavor</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">option</span> <span class="o">==</span> <span class="s1">&#39;get&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">get_flavor</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">option</span> <span class="o">==</span> <span class="s1">&#39;delete&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">delete_flavor</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+</span></span></code></pre></div><h3 id="总结">总结</h3>
+<p>到这里整个命令行脚本就大体完成了，如果需要别的改动，只需要按照这个思路修改就可以了。更多的argparse模块的使用可以参照官方文档的解析，非常详细，而且配有非常多的案例，当然，这太麻烦了，我找到了一个写的很不错的文档推荐给大家，我自己写的就太糟糕了。</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/edc3001/article/details/113788716"target="_blank" rel="external nofollow noopener noreferrer">【python 学习杂记】argparse模块使用教程_Onedean的博客-CSDN博客_argparse 教程</a></p>
+</blockquote></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=1011-02-01&#32;09:48:04>更新于 2023-02-01&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://feyncode.github.io/posts/python%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91%E4%BA%91%E4%B8%BB%E6%9C%BA%E7%B1%BB%E5%9E%8B%E7%AE%A1%E7%90%86/" data-title="Python运维开发云主机类型管理" data-hashtags="openstack,python"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://feyncode.github.io/posts/python%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91%E4%BA%91%E4%B8%BB%E6%9C%BA%E7%B1%BB%E5%9E%8B%E7%AE%A1%E7%90%86/" data-hashtag="openstack,python"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://feyncode.github.io/posts/python%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91%E4%BA%91%E4%B8%BB%E6%9C%BA%E7%B1%BB%E5%9E%8B%E7%AE%A1%E7%90%86/" data-title="Python运维开发云主机类型管理"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/openstackpython/">openstack,python</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/posts/python%E5%BC%80%E5%8F%91%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7/" class="prev" rel="prev" title="Python开发命令行工具"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Python开发命令行工具</a>
+      <a href="/posts/python%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/" class="next" rel="next" title="Python运维开发用户管理">Python运维开发用户管理<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="utterances" class="comment"></div><noscript>
+        Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/" rel="external nofollow noopener noreferrer">Utterances</a>.
+      </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.108.0">Hugo</a> 强力驱动 
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="/">feyncode</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/lunr/lunr.min.js" defer></script><script src="/lib/lunr/lunr.stemmer.support.min.js" defer></script><script src="/lib/lunr/lunr.zh.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/twemoji/twemoji.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"feyncode/hugotalks"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"search":{"highlightTag":"em","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":30},"twemoji":true};</script><script src="/js/theme.min.js" defer></script></body>
+</html>

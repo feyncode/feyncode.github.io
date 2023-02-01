@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Python开发命令行工具 - Feyncode的博客 - 每天进步一点点</title><meta name="author" content="feyncode">
+<meta name="author-link" content="">
+<meta name="description" content="" /><meta name="keywords" content='openstack,python' /><meta itemprop="name" content="Python开发命令行工具">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2023-02-01T09:45:03+08:00" />
+<meta itemprop="dateModified" content="2023-02-01T09:45:03+08:00" />
+<meta itemprop="wordCount" content="2884">
+<meta itemprop="keywords" content="openstack,python," /><meta property="og:title" content="Python开发命令行工具" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://feyncode.github.io/posts/python%E5%BC%80%E5%8F%91%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-02-01T09:45:03+08:00" />
+<meta property="article:modified_time" content="2023-02-01T09:45:03+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Python开发命令行工具"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://feyncode.github.io/posts/python%E5%BC%80%E5%8F%91%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7/" /><link rel="prev" href="http://feyncode.github.io/posts/openstack%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E8%80%83/" /><link rel="next" href="http://feyncode.github.io/posts/python%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91%E4%BA%91%E4%B8%BB%E6%9C%BA%E7%B1%BB%E5%9E%8B%E7%AE%A1%E7%90%86/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Python开发命令行工具",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/feyncode.github.io\/posts\/python%E5%BC%80%E5%8F%91%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7\/"
+    },"genre": "posts","keywords": "openstack,python","wordcount":  2884 ,
+    "url": "http:\/\/feyncode.github.io\/posts\/python%E5%BC%80%E5%8F%91%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7\/","datePublished": "2023-02-01T09:45:03+08:00","dateModified": "2023-02-01T09:45:03+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "feyncode"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="Feyncode的博客 - 每天进步一点点"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/fixit.min.svg"
+    data-srcset="/fixit.min.svg, /fixit.min.svg 1.5x, /fixit.min.svg 2x"
+    data-sizes="auto"
+    alt="Feyncode的博客 - 每天进步一点点"
+    title="Feyncode的博客 - 每天进步一点点"/><span class="header-title-text">费冰の空间</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="Feyncode的博客 - 每天进步一点点"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/fixit.min.svg"
+    data-srcset="/fixit.min.svg, /fixit.min.svg 1.5x, /fixit.min.svg 2x"
+    data-sizes="auto"
+    alt="/fixit.min.svg"
+    title="/fixit.min.svg"/><span class="header-title-text">费冰の空间</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>Python开发命令行工具</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="https://github.com/feyncode" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="/fixit.min.svg"
+    data-srcset="/fixit.min.svg, /fixit.min.svg 1.5x, /fixit.min.svg 2x"
+    data-sizes="auto"
+    alt="feyncode"
+    title="feyncode"/>&nbsp;feyncode</a></span>
+          <span class="post-category">收录于 <a href="/categories/python/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> python</a></span></div>
+      <div class="post-meta-line"><span title=2023-02-01&#32;09:45:03><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-01">2023-02-01</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 2884 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 6 分钟</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#介绍">介绍</a></li>
+        <li><a href="#python标准库sys模块">python标准库sys模块</a></li>
+        <li><a href="#命令行工具">命令行工具</a></li>
+        <li><a href="#概念">概念</a></li>
+        <li><a href="#基础">基础</a></li>
+        <li><a href="#示例">示例</a></li>
+        <li><a href="#使用介绍">使用介绍</a></li>
+        <li><a href="#可选参数设置">可选参数设置</a></li>
+        <li><a href="#必选参数设置">必选参数设置</a></li>
+        <li><a href="#列表参数传入设置">列表参数传入设置</a></li>
+        <li><a href="#互斥参数">互斥参数</a></li>
+        <li><a href="#默认参数设置">默认参数设置</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h3 id="介绍">介绍</h3>
+<p>Python模块argparse，这是一个命令行选项，参数和子命令的解释器，使用该模块可以编写友好的命令行工具，在程序中定义好需要的参数，argparse将弄清楚如何解析 sys.argv中的参数。argparse模块还支持自动生成帮助和用法信息，当模块解析到无效参数时，还可以发出错误。</p>
+<h3 id="python标准库sys模块">python标准库sys模块</h3>
+<pre tabindex="0"><code>sys.agv				#命令行参数List,第一个元素时程序本身路径
+sys.exit(n)		#退出程序，正常退出时exit(0)
+sys.version 	#获取Python解释程序的版本信息
+sys.maxint 		#最大的Int值
+sys.path			#返回模块的搜索路径，初始化时使用PYTHONPATH环境变量的值
+sys.stdin			#输入线管
+sys.stdout		#输出相关
+sys.stderror	#错误相关
+</code></pre><h3 id="命令行工具">命令行工具</h3>
+<p>我们使用过很多的命令行工具，那么python开发出的命令行工具，能列举出哪些呢？
+其实python本身就是一个命令行工具，在cmd中使用python &ndash;help，能输出python的帮助语句，这就是命令行工具解析参数后输出的一个例子。
+再有，pip 也是一个典型的例子，在使用pip时，不同的子命令可以达成不同的效果。
+当然知道和做到相距实在太过遥远，我也很难写出一个python或pip。</p>
+<h3 id="概念">概念</h3>
+<p>argparse是一个较大的模块，提供了很多功能，它的文档相当详细和完整，包含大量示例。所以学习该模块最好的教程就是官方文档，argparse(<a href="https://docs.python.org/zh-cn/3/library/argparse.html"target="_blank" rel="external nofollow noopener noreferrer">https://docs.python.org/zh-cn/3/library/argparse.html</a>),那么为什么我没去看呢，一方面是我并不需要复杂的功能，另一方面我的英语阅读能力不足以让我完全理解该文档。我们必须承认，英语水平分开了普通的技术人员，因此我正在努力提升英语水平。
+在开发一个命令行工具前，我们首先需要知道一个命令行工具包含了哪些内容，它又是怎么识别我们提供的参数的，识别后又是怎么提供输出的，对待错误的选项，它又是如何调整的。
+因此，官网使用了 &rsquo;ls&rsquo; 这个命令来介绍命令行工具的几个概念：</p>
+<ul>
+<li><strong>ls</strong> 是一个即使在运行的时候没有提供任何选项，也非常有用的命令。在默认情况下他会输出当前文件夹包括的内容。</li>
+<li>如果我们想要使用比它默认提供的更多功能，我们需要告诉该命令更多信息。我们可以指定所谓的位置参数，之所以这样命名，是因为程序应该如何处理该参数值，完全取决于它在命令行出现的文职。更能体现这个概念的命令如 cp ，它最基本的用法是 <code>cp SRC DEST</code>，第一个位置参数指的是你想要复制的，第二个位置参数指的是你想要复制到的位置。</li>
+<li>现在假设我们想要改变这个程序的行为。使用 **ls -l ，**我们可以输出更多的信息，在这个例子中，-l 被称为可选参数。</li>
+<li><strong>--help</strong>通常被用来输出帮助文档，它是非常有用的，因为当你遇到一个你从未使用过的程序时，你可以通过阅读它的帮助文档来弄清楚它是如何运行的。</li>
+</ul>
+<p>了解了这些，我们通过几个例子可以更好的说明这个模块是如何解析从命令行获取的参数的，并且解析出的参数又是如何被程序使用的。</p>
+<h3 id="基础">基础</h3>
+<p>命令行参数解析很容易，但是它也可以被加入很多参数，注入很多定义，这让最后的程序变得不堪入目，为了防止我的朋友，也就是你，在开始就头痛，我首先带来一个我认为最简单的案例。</p>
+<h3 id="示例">示例</h3>
+<p>所有解析都应当配有示例，并展示对比来说明程序的行为有哪些改变。</p>
+<blockquote>
+<p>argparse使用主要有四个步骤：</p>
+<ul>
+<li>导入argparse包</li>
+<li>创建 ArgumentParser() 参数对象</li>
+<li>调用 add_argument() 方法往参数对象中添加参数</li>
+<li>使用 parse_args() 解析添加参数的参数对象，获得解析对象</li>
+<li>程序其他部分，当需要使用命令行参数时，使用解析对象.参数获取</li>
+</ul>
+</blockquote>
+<p>在未使用argparse模块前，我编写了这样一个python文件。</p>
+<pre tabindex="0"><code>print(&#34;hello world!&#34;)
+</code></pre><p>我们很熟悉这个案例，毫无疑问我们清楚python运行该文件时会得到什么样的输出，当我们在终端运行这个python文件demo1时，我们会使用以下命令。</p>
+<pre tabindex="0"><code>$ python demo1.py
+hello world!
+</code></pre><p>是的，我们看到在命令行中，运行该文件输出了我们想要的结果，一般情况下，我们需要python文件输出某个值时，要么我们将该值在文件中写死，就像上面这个例子一样，我们已经在文件中将想要的输出写死在文件中，这个值在未被输出时就已经在程序中被决定。如果我们需要用户在终端中向程序提供某些值，来改变程序的行为，得到不同的输出，我们常用的手段是使用input，让程序读入终端的输入来达到这样的效果。不过这样做仍然需要手动的输入，如果是自动化程序，那么可以使用参数直接带入需要的变量将大大减少这样的交互。
+接下来我将演示如何使用argparse来完成一个简单的参数解析。</p>
+<pre tabindex="0"><code>import argparse #导入argparse包
+
+parse = argparse.ArgumentParser() #创建参数对象
+parse.add_argument(&#39;hello&#39;) #向参数对象中添加参数
+args = parse.parse_args() #解析参数对象获得解析对象
+if __name__ == &#39;__main__&#39;:
+   print(args.hello)
+</code></pre><p>让我们来运行一下这个程序</p>
+<pre tabindex="0"><code>$ python demo1.py helloworld
+helloworld
+</code></pre><p>很简单，这是一个容易的例子，需要注意的是，由于没有指定，所以命令行参数输入默认按顺序复制，顺序不同的话得到的结果将不同。
+接下来我将带入一些官网上的案例，来继续解释argparse的一些进阶示例。</p>
+<h3 id="使用介绍">使用介绍</h3>
+<ul>
+<li>&ndash;help 选项，也可缩写为 -h，是唯一一个可以直接使用的选项（即不需要指定该选项的内容）。指定任何内容都会导致错误。即便如此，我们也能直接得到一条有用的用法信息。</li>
+</ul>
+<p>add_argument()方法，定义如何解析命令行参数，对于该方法，参数解释如下:</p>
+<ul>
+<li>name or flags - 选项字符串的名字或者列表，例如 foo 或者 -f, &ndash;foo。</li>
+<li>action - 命令行遇到参数时的动作，默认值是 store。</li>
+<li>
+<ul>
+<li>store_const，表示赋值为const；</li>
+</ul>
+</li>
+<li>– append，将遇到的值存储成列表，也就是如果参数重复则会保存多个值;</li>
+<li>– append_const，将参数规范中定义的一个值保存到一个列表；</li>
+<li>– count，存储遇到的次数；此外，也可以继承 argparse.Action 自定义参数解析；</li>
+<li>nargs - 应该读取的命令行参数个数，可以是</li>
+<li>具体的数字，或者是?号，当不指定值时对于 Positional argument 使用 default，对于 Optional argument 使用 const</li>
+<li>或者是 * 号，表示 0 或多个参数；</li>
+<li>或者是 + 号表示 1 或多个参数。</li>
+<li>const - action 和 nargs 所需要的常量值。</li>
+<li>default - 不指定参数时的默认值。</li>
+<li>type - 命令行参数应该被转换成的类型。</li>
+<li>choices - 参数可允许的值的一个容器。</li>
+<li>required - 可选参数是否可以省略 (仅针对可选参数)。</li>
+<li>help - 参数的帮助信息，当指定为 argparse.SUPPRESS 时表示不显示该参数的帮助信息.</li>
+<li>metavar - 在 usage 说明中的参数名称，对于必选参数默认就是参数名称，对于可选参数默认是全大写的参数名称.</li>
+<li>dest - 解析后的参数名称，默认情况下，对于可选参数选取最长的名称，中划线转换为下划线.</li>
+</ul>
+<h3 id="可选参数设置">可选参数设置</h3>
+<p>通过在参数名前加 <code>--</code>, 设置为可选参数，如果未输入，则使用<code>default</code>默认值，若为设置<code>default</code>则默认赋值 <code>None</code></p>
+<pre tabindex="0"><code>parse.add_argument(&#39;-n&#39;, &#39;--name&#39;, type=str, metavar=&#39;name&#39;, help=&#39;New flavor name&#39;)
+</code></pre><p>引用名，可以缩短参数名，简化命令行参数输入；也就是使用-n或者-name可以获得一样的效果</p>
+<h3 id="必选参数设置">必选参数设置</h3>
+<p>需要一个必选参数时，则设置<code>required=True</code>,这时，无论参数是否时可选参数，都必须输入</p>
+<h3 id="列表参数传入设置">列表参数传入设置</h3>
+<p>添加<code>narg='+'</code> 这样可以在命令行中添加若干个参数，传入后将被添加到列表中。</p>
+<h3 id="互斥参数">互斥参数</h3>
+<p>也就是<code>add_mutually_exclusive_group</code>方法，这让我们可以添加两个互相排斥的参数，也就是只能选择其中一个参数添加</p>
+<h3 id="默认参数设置">默认参数设置</h3>
+<blockquote>
+<p>set_defaults()可以设置一些参数的默认值</p>
+</blockquote></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=1011-02-01&#32;09:45:03>更新于 2023-02-01&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://feyncode.github.io/posts/python%E5%BC%80%E5%8F%91%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7/" data-title="Python开发命令行工具" data-hashtags="openstack,python"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://feyncode.github.io/posts/python%E5%BC%80%E5%8F%91%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7/" data-hashtag="openstack,python"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://feyncode.github.io/posts/python%E5%BC%80%E5%8F%91%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7/" data-title="Python开发命令行工具"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/openstackpython/">openstack,python</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/posts/openstack%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E8%80%83/" class="prev" rel="prev" title="Openstack命令行参考"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Openstack命令行参考</a>
+      <a href="/posts/python%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91%E4%BA%91%E4%B8%BB%E6%9C%BA%E7%B1%BB%E5%9E%8B%E7%AE%A1%E7%90%86/" class="next" rel="next" title="Python运维开发云主机类型管理">Python运维开发云主机类型管理<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="utterances" class="comment"></div><noscript>
+        Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/" rel="external nofollow noopener noreferrer">Utterances</a>.
+      </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.108.0">Hugo</a> 强力驱动 
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="/">feyncode</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/lunr/lunr.min.js" defer></script><script src="/lib/lunr/lunr.stemmer.support.min.js" defer></script><script src="/lib/lunr/lunr.zh.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/twemoji/twemoji.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"feyncode/hugotalks"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"search":{"highlightTag":"em","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":30},"twemoji":true};</script><script src="/js/theme.min.js" defer></script></body>
+</html>
