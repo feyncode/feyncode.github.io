@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Openstack命令行参考 - Feyncode的博客 - 每天进步一点点</title><meta name="author" content="feyncode">
+<meta name="author-link" content="">
+<meta name="description" content="" /><meta name="keywords" content='openstack' /><meta itemprop="name" content="Openstack命令行参考">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2023-02-01T08:48:56+08:00" />
+<meta itemprop="dateModified" content="2023-02-01T08:48:56+08:00" />
+<meta itemprop="wordCount" content="5874">
+<meta itemprop="keywords" content="openstack," /><meta property="og:title" content="Openstack命令行参考" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://feyncode.github.io/posts/openstack%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E8%80%83/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-02-01T08:48:56+08:00" />
+<meta property="article:modified_time" content="2023-02-01T08:48:56+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Openstack命令行参考"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://feyncode.github.io/posts/openstack%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E8%80%83/" /><link rel="prev" href="http://feyncode.github.io/posts/python%E8%B0%83%E7%94%A8openstackapi/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Openstack命令行参考",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/feyncode.github.io\/posts\/openstack%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E8%80%83\/"
+    },"genre": "posts","keywords": "openstack","wordcount":  5874 ,
+    "url": "http:\/\/feyncode.github.io\/posts\/openstack%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E8%80%83\/","datePublished": "2023-02-01T08:48:56+08:00","dateModified": "2023-02-01T08:48:56+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "feyncode"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="Feyncode的博客 - 每天进步一点点"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/fixit.min.svg"
+    data-srcset="/fixit.min.svg, /fixit.min.svg 1.5x, /fixit.min.svg 2x"
+    data-sizes="auto"
+    alt="Feyncode的博客 - 每天进步一点点"
+    title="Feyncode的博客 - 每天进步一点点"/><span class="header-title-text">费冰の空间</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="Feyncode的博客 - 每天进步一点点"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/fixit.min.svg"
+    data-srcset="/fixit.min.svg, /fixit.min.svg 1.5x, /fixit.min.svg 2x"
+    data-sizes="auto"
+    alt="/fixit.min.svg"
+    title="/fixit.min.svg"/><span class="header-title-text">费冰の空间</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>Openstack命令行参考</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="https://github.com/feyncode" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="/fixit.min.svg"
+    data-srcset="/fixit.min.svg, /fixit.min.svg 1.5x, /fixit.min.svg 2x"
+    data-sizes="auto"
+    alt="feyncode"
+    title="feyncode"/>&nbsp;feyncode</a></span>
+          <span class="post-category">收录于 <a href="/categories/openstack/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> openstack</a></span></div>
+      <div class="post-meta-line"><span title=2023-02-01&#32;08:48:56><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-01">2023-02-01</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 5874 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 12 分钟</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#约定">约定</a></li>
+    <li><a href="#显示openstack客户端版本号">显示OpenStack客户端版本号</a></li>
+    <li><a href="#认证keystone">认证（keystone）</a>
+      <ul>
+        <li><a href="#列出所有的用户">列出所有的用户</a></li>
+        <li><a href="#列出认证服务目录">列出认证服务目录</a></li>
+        <li><a href="#列出可用服务">列出可用服务</a></li>
+        <li><a href="#创建用户">创建用户</a></li>
+        <li><a href="#将项目和用户加入到角色中">将项目和用户加入到角色中</a></li>
+        <li><a href="#创建服务实体">创建服务实体</a></li>
+        <li><a href="#创建-api-端点">创建 API 端点</a></li>
+        <li><a href="#查看用户信息">查看用户信息</a></li>
+        <li><a href="#列出所有的端点地址">列出所有的端点地址</a></li>
+        <li><a href="#列出当前用户的token">列出当前用户的token</a></li>
+      </ul>
+    </li>
+    <li><a href="#镜像服务glance">镜像服务(glance)</a>
+      <ul>
+        <li><a href="#列出镜像">列出镜像</a></li>
+        <li><a href="#查看镜像详细信息">查看镜像详细信息</a></li>
+        <li><a href="#上传镜像">上传镜像</a></li>
+        <li><a href="#更新镜像">更新镜像</a></li>
+        <li><a href="#删除镜像">删除镜像</a></li>
+        <li><a href="#镜像下载">镜像下载</a></li>
+      </ul>
+    </li>
+    <li><a href="#网络服务neutron">网络服务(neutron)</a>
+      <ul>
+        <li><a href="#创建内部网络">创建内部网络</a></li>
+        <li><a href="#创建外部网络">创建外部网络</a></li>
+        <li><a href="#创建网络子网">创建网络子网</a></li>
+        <li><a href="#列出所有网络">列出所有网络</a></li>
+        <li><a href="#查看网络详细信息">查看网络详细信息</a></li>
+        <li><a href="#删除网络">删除网络</a></li>
+        <li><a href="#创建路由器">创建路由器</a></li>
+        <li><a href="#设置路由器外部网络">设置路由器外部网络</a></li>
+        <li><a href="#设置路由器内部网络">设置路由器内部网络</a></li>
+        <li><a href="#列出所有路由器">列出所有路由器</a></li>
+        <li><a href="#查看路由器详细信息">查看路由器详细信息</a></li>
+        <li><a href="#删除路由器">删除路由器</a></li>
+      </ul>
+    </li>
+    <li><a href="#计算服务nova">计算服务(NOVA)</a>
+      <ul>
+        <li><a href="#列出所有云主机类型">列出所有云主机类型</a></li>
+        <li><a href="#创建云主机类型">创建云主机类型</a></li>
+        <li><a href="#查看云主机类型详细信息">查看云主机类型详细信息</a></li>
+        <li><a href="#列出所有安全组">列出所有安全组</a></li>
+        <li><a href="#查看安全组中的规则">查看安全组中的规则</a></li>
+        <li><a href="#查看安全组规则的详细信息">查看安全组规则的详细信息</a></li>
+        <li><a href="#创建安全组">创建安全组</a></li>
+        <li><a href="#删除安全组">删除安全组</a></li>
+        <li><a href="#删除安全组规则">删除安全组规则</a></li>
+        <li><a href="#在安全组中添加规则">在安全组中添加规则</a></li>
+        <li><a href="#创建云主机">创建云主机</a></li>
+        <li><a href="#列出云主机">列出云主机</a></li>
+        <li><a href="#查看云主机的控制台日志">查看云主机的控制台日志</a></li>
+        <li><a href="#显示云主机的远程控制台-url">显示云主机的远程控制台 URL</a></li>
+        <li><a href="#云主机的重启关机启动暂停取消暂停">云主机的重启，关机，启动，暂停，取消暂停</a></li>
+        <li><a href="#云主机的挂起取消挂起">云主机的挂起，取消挂起</a></li>
+        <li><a href="#云主机的释放和取消释放">云主机的释放和取消释放</a></li>
+        <li><a href="#云主机创建快照">云主机创建快照</a></li>
+        <li><a href="#调整云主机大小">调整云主机大小</a></li>
+        <li><a href="#云主机挂载云硬盘">云主机挂载云硬盘</a></li>
+        <li><a href="#创建密钥对">创建密钥对</a></li>
+        <li><a href="#创建云主机使用密钥对">创建云主机使用密钥对</a></li>
+        <li><a href="#使用密钥连接云主机">使用密钥连接云主机</a></li>
+        <li><a href="#创建浮动ip">创建浮动ip</a></li>
+        <li><a href="#云主机绑定浮动ip">云主机绑定浮动ip</a></li>
+      </ul>
+    </li>
+    <li><a href="#块存储cinder">块存储(cinder)</a>
+      <ul>
+        <li><a href="#显示所有卷">显示所有卷</a></li>
+        <li><a href="#创建新卷">创建新卷</a></li>
+        <li><a href="#创建卷类型">创建卷类型</a></li>
+        <li><a href="#将卷连接到云主机">将卷连接到云主机</a></li>
+        <li><a href="#扩展卷">扩展卷</a></li>
+      </ul>
+    </li>
+    <li><a href="#对象存储swift">对象存储(swift)</a>
+      <ul>
+        <li><a href="#创建容器">创建容器</a></li>
+        <li><a href="#列出容器">列出容器</a></li>
+        <li><a href="#查看容器详细信息">查看容器详细信息</a></li>
+        <li><a href="#创建对象上传对象">创建对象，上传对象</a></li>
+        <li><a href="#列出容器中的对象">列出容器中的对象</a></li>
+        <li><a href="#查看对象详情">查看对象详情</a></li>
+        <li><a href="#从容器中下载对象">从容器中下载对象</a></li>
+        <li><a href="#删除对象">删除对象</a></li>
+        <li><a href="#删除容器">删除容器</a></li>
+        <li><a href="#递归删除容器">递归删除容器</a></li>
+      </ul>
+    </li>
+    <li><a href="#模板编排服务heat">模板编排服务（heat）</a>
+      <ul>
+        <li><a href="#编排创建cinder卷">编排创建cinder卷</a></li>
+        <li><a href="#编排创建swift容器">编排创建swift容器</a></li>
+        <li><a href="#编排创建network和subnet">编排创建network和subnet</a></li>
+        <li><a href="#编排创建flavor">编排创建flavor</a></li>
+        <li><a href="#编排创建云主机">编排创建云主机</a></li>
+        <li><a href="#编排创建user">编排创建user</a></li>
+        <li><a href="#列出所有堆栈">列出所有堆栈</a></li>
+        <li><a href="#列出堆栈详细信息">列出堆栈详细信息</a></li>
+        <li><a href="#删除堆栈">删除堆栈</a></li>
+      </ul>
+    </li>
+    <li><a href="#文件共享服务manila">文件共享服务(manila)</a>
+      <ul>
+        <li><a href="#创建禁用dhss的默认共享类型">创建禁用DHSS的默认共享类型</a></li>
+        <li><a href="#列出共享类型">列出共享类型</a></li>
+        <li><a href="#创建共享目录">创建共享目录</a></li>
+        <li><a href="#列出共享目录">列出共享目录</a></li>
+        <li><a href="#查看共享目录详情">查看共享目录详情</a></li>
+        <li><a href="#允许访问共享目录">允许访问共享目录</a></li>
+        <li><a href="#查看共享目录权限和开放网段">查看共享目录权限和开放网段</a></li>
+        <li><a href="#挂载共享目录">挂载共享目录</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><p>hello，大家好，这里是费冰。在使用OpenStack的过程中，固然我们可以通过 web 页面完成绝大多数的操作，但作为管理人员，不能不知晓 OpenStack 命令行的有关知识。</p>
+<p>OpenStack 是一个开源的公有云和私有云的云计算平台，一系列的相关项目提供了一套云基础设施的解决方案。当我们提及OpenStack命令时，一般指两种命令。</p>
+<p>其一，OpenStackClient 项目提供了一个统一的命令行客户端，它使我们能够通过易于使用的命令访问项目API，创建和管理OpenStack中的资源。</p>
+<p>其二，大多数的OpenStack项目为每个服务提供了一个命令行客户端，我们可以通过项目命令来创建和管理项目中的有关资源。</p>
+<p>在命令行或脚本中执行命令之前，我们必须提供 OpenStack 凭据，这些命令才能够成功运行。</p>
+<p>在使用 OpenStack API 前，我假设你熟悉 HTTP， RESTful Web服务，OpenStack服务和JSON或XML数据序列化格式。</p>
+<h2 id="约定">约定</h2>
+<p>本文档使用多种排版约定。</p>
+<p>其实是我用这个语雀还不太熟，这和markdown还不太一样，很多语法不是共通的，而且显示代码块也不是我常用的格式，那么为了阅读不烧cpu。作以下约定。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">这里是代码，比如说
+</span></span><span class="line"><span class="cl">openstack --version
+</span></span></code></pre></div><p>为了方便理解和阅读，在介绍每个命令时，会在其后给出示例。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">[root@controller ~]# openstack --version    # 这里是演示的代码
+</span></span><span class="line"><span class="cl">openstack 5.4.0  #这里是代码的输出
+</span></span></code></pre></div><p>并且，在命令中的大写字段为需要替换的在实际环境中的具体字段。</p>
+<p>本文档参考了无名小歌的博客，以下是博客原文。</p>
+<p><a href="https://blog.csdn.net/qq_48450494/article/details/125557500"target="_blank" rel="external nofollow noopener noreferrer">【收藏级】88条关于OpenStack命令的手册（常看常新）</a></p>
+<h2 id="显示openstack客户端版本号">显示OpenStack客户端版本号</h2>
+<p>为了查看 openstack 客户端版本号，运行以下命令：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack --version
+</span></span></code></pre></div><p>示例</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">[root@controller ~]# openstack --version
+</span></span><span class="line"><span class="cl">openstack 5.4.0
+</span></span></code></pre></div><h2 id="认证keystone">认证（keystone）</h2>
+<h3 id="列出所有的用户">列出所有的用户</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack user list
+</span></span></code></pre></div><p>示例</p>
+<h3 id="列出认证服务目录">列出认证服务目录</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack catalog list
+</span></span></code></pre></div><h3 id="列出可用服务">列出可用服务</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack service list
+</span></span></code></pre></div><h3 id="创建用户">创建用户</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack user create --domain Default --password PASSWORD USERNAME
+</span></span></code></pre></div><h3 id="将项目和用户加入到角色中">将项目和用户加入到角色中</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack role add --project PROJECTNAME --user USERNAME ROLE
+</span></span></code></pre></div><h3 id="创建服务实体">创建服务实体</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack service create --name NAME --description “DESCTIPTION” SERVICE
+</span></span></code></pre></div><h3 id="创建-api-端点">创建 API 端点</h3>
+<p>OpenStack使用三个API端点来代表每种服务：admin, internal 和 public。默认情况下，管理API端点允许修改用户和租户而公共和内部API不允许这些操作。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack endpoint create --region RegionOne identity public http://controller:5000/v3
+</span></span><span class="line"><span class="cl">openstack endpoint create --region RegionOne identity internal http://controller:5000/v3
+</span></span><span class="line"><span class="cl">openstack endpoint create --region RegionOne identity admin http://controller:5000/v3
+</span></span></code></pre></div><p>public代表公共地址，internal表示组件内部地址，admin则是管理员地址</p>
+<h3 id="查看用户信息">查看用户信息</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack user show USERNAME
+</span></span></code></pre></div><h3 id="列出所有的端点地址">列出所有的端点地址</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack endpoint list
+</span></span></code></pre></div><h3 id="列出当前用户的token">列出当前用户的token</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack token issue
+</span></span></code></pre></div><p>在openstack中，运行命令行前都必须通过身份验证，否则命令将无法正常运行。</p>
+<p>一般想要通过身份验证，我们需要提供以下信息</p>
+<ul>
+<li>username 用户的名称</li>
+<li>user_domain_name 用户域的名称</li>
+<li>password 用户的密码</li>
+<li>project_name 项目名称</li>
+<li>project_domain_name 项目域的名称</li>
+<li>auth_url Keystone认证服务的API地址</li>
+<li>identity_api_version 应始终设置为3</li>
+</ul>
+<p>我们一方面可以将这些值作为变量传递给openstack命令行，另一方面可以在环境中设置这些变量，显然在环境中设置更为简便，无需每次使用命令行都声明这些变量。</p>
+<p>我们可以编写如下所示的环境变量文件，在系统中加载以便快速通过认证。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl"> export OS_USERNAME=my_username
+</span></span><span class="line"><span class="cl"> export OS_USER_DOMAIN_NAME=my_user_domain
+</span></span><span class="line"><span class="cl"> export OS_PASSWORD=my_password
+</span></span><span class="line"><span class="cl"> export OS_PROJECT_NAME=my_project
+</span></span><span class="line"><span class="cl"> export OS_PROJECT_DOMAIN_NAME=my_project_domain
+</span></span><span class="line"><span class="cl"> export OS_AUTH_URL=http://localhost:5000/v3
+</span></span><span class="line"><span class="cl"> export OS_IDENTITY_API_VERSION=3
+</span></span></code></pre></div><h2 id="镜像服务glance">镜像服务(glance)</h2>
+<p>glance在openstack中提供镜像服务，glance中的镜像可以处于以下几种状态之一：</p>
+<ul>
+<li>queued glance服务已经创建了镜像的注册表，但是并没有上传实体镜像，这时候镜像大小为0。</li>
+<li>saving 表示镜像的原始数据正在上传至glance，需要注意的是，当镜像通过调用 post/images注册并且提供了“x-image-meta-location”信息头，则该镜像不会处于saving状态，因为镜像数据已经在其他的可用位置。</li>
+<li>uploading 表示已经进行导入镜像的过程中</li>
+<li>importing 表示已经进行导入调用，但是镜像尚未准备就绪供使用</li>
+<li>active 表示在glance中完全可用的镜像</li>
+<li>deactivated 表示不允许任何非管理员访问镜像。</li>
+<li>killed 表示上传镜像数据时发生错误，并且镜像不可读。</li>
+<li>deleted glance保留了镜像的信息，但是不再可供使用，该镜像将会在指定的日期自动删除。</li>
+<li>pending_delete 类似于删除，但是glance尚未删除镜像数据，该状态下镜像不可恢复。</li>
+</ul>
+<h3 id="列出镜像">列出镜像</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack image list
+</span></span></code></pre></div><h3 id="查看镜像详细信息">查看镜像详细信息</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack image show 镜像id/name
+</span></span></code></pre></div><h3 id="上传镜像">上传镜像</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack image create cirros --disk-format qcow2 --container-format bare --public --file cirros-0.6.1-x86_64-disk.img
+</span></span></code></pre></div><p>参数说明：</p>
+<ul>
+<li>disk-format： 磁盘格式，可选项有 raw, vhd, vhdx, vmdk, vdi, iso, <strong>ploop</strong> qcow2</li>
+<li>container-format: 容器格式，可选项有bare, ovf, aki, ari, ami, ova, docker, compressed</li>
+<li>&ndash;file 指定上传的镜像文件</li>
+<li>&ndash;public 指定镜像的访问权限，public表示公开可用，也可以设置为&ndash;private | &ndash;community | &ndash;shared</li>
+</ul>
+<h3 id="更新镜像">更新镜像</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack image set 镜像id/name 镜像属性
+</span></span></code></pre></div><p>示例，修改镜像cirrors的最小启动ram和最小启动磁盘</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack image set cirrors --min-ram 1 --min-disk 2
+</span></span></code></pre></div><h3 id="删除镜像">删除镜像</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack image delete 镜像id/name
+</span></span></code></pre></div><h3 id="镜像下载">镜像下载</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack image save 镜像id/name --file 镜像保存文件
+</span></span></code></pre></div><h2 id="网络服务neutron">网络服务(neutron)</h2>
+<p>网络服务管理一般需要管理员对网络知识作相应了解，例如BGP动态录有，DHCP分发服务，浮动IP端口转发等等，这里我列举几个常用的命令。</p>
+<p>网络创建有太多的参数可用，就留给各位补充吧。</p>
+<h3 id="创建内部网络">创建内部网络</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack network create NETWORK --internal
+</span></span></code></pre></div><h3 id="创建外部网络">创建外部网络</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack network create NETWORK --external 
+</span></span></code></pre></div><p>可选参数补充：</p>
+<ul>
+<li>provider-network-type：虚拟网络类型，例如flat，geneve，gre，vlan，vxlan</li>
+<li>privider-physical-network 物理网络名称</li>
+<li>project 所属的项目</li>
+</ul>
+<h3 id="创建网络子网">创建网络子网</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack subnet create SUBNETNAME --subnet-range 192.168.10.0/24 --gateway 192.168.10.2 --network NETWORK
+</span></span></code></pre></div><p>参数说明：</p>
+<ul>
+<li>subnet-range：子网范围</li>
+<li>gateway： 指定子网的网关</li>
+<li>network：指定子网所属的网络</li>
+</ul>
+<h3 id="列出所有网络">列出所有网络</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack network list
+</span></span></code></pre></div><h3 id="查看网络详细信息">查看网络详细信息</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack network show NETWORK
+</span></span></code></pre></div><h3 id="删除网络">删除网络</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack network delete NETWORK
+</span></span></code></pre></div><p>如果删除网络前，删除的网络被占用，则删除失败。</p>
+<h3 id="创建路由器">创建路由器</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack router create ROUTER
+</span></span></code></pre></div><h3 id="设置路由器外部网络">设置路由器外部网络</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack router set ROUTER --external-gateway NETWORK --fixed-ip subnet=SUBNET,ip-address=192.168.10.10 
+</span></span></code></pre></div><p>其中，</p>
+<ul>
+<li>external-gateway 用作路由器的外部网络</li>
+<li>fixed-ip 路由器的外部网络ip地址</li>
+</ul>
+<h3 id="设置路由器内部网络">设置路由器内部网络</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack router add subnet ROUTER SUBNET
+</span></span></code></pre></div><h3 id="列出所有路由器">列出所有路由器</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack router list
+</span></span></code></pre></div><h3 id="查看路由器详细信息">查看路由器详细信息</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack router show ROUTER
+</span></span></code></pre></div><h3 id="删除路由器">删除路由器</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack router delete ROUTER
+</span></span></code></pre></div><h2 id="计算服务nova">计算服务(NOVA)</h2>
+<h3 id="列出所有云主机类型">列出所有云主机类型</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack flavor list
+</span></span></code></pre></div><h3 id="创建云主机类型">创建云主机类型</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack flvaor create FLAVOR --ram 1024 --disk 10 --vcpu 2
+</span></span></code></pre></div><p>参数说明：</p>
+<ul>
+<li>id 指云主机类型的id，默认创建uuid</li>
+<li>ram 指内存大小，单位为MB ，不指定时默认值为256M</li>
+<li>disk 磁盘大小，单位为GB，默认值为0</li>
+<li>vcpu cpu数量，默认为1</li>
+<li>ephemeral 指临时磁盘，单位为GB,默认为0</li>
+<li>swap 指swap磁盘，单位为MB</li>
+<li>rxtx-factor 指rx/tx因子，默认为1.0</li>
+<li>public 云主机类型的权限，public为公开可用，private则为不共享</li>
+<li>project 指定一个项目共享云主机类型，必须和private参数同时使用</li>
+</ul>
+<h3 id="查看云主机类型详细信息">查看云主机类型详细信息</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack flavor show FLAVOR
+</span></span></code></pre></div><h3 id="列出所有安全组">列出所有安全组</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack security group list
+</span></span></code></pre></div><h3 id="查看安全组中的规则">查看安全组中的规则</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack security group rule list 安全组id/name
+</span></span></code></pre></div><h3 id="查看安全组规则的详细信息">查看安全组规则的详细信息</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack security group rule show 规则id
+</span></span></code></pre></div><h3 id="创建安全组">创建安全组</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack security group create 安全组name
+</span></span></code></pre></div><h3 id="删除安全组">删除安全组</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack security group delete 安全组id/name
+</span></span></code></pre></div><h3 id="删除安全组规则">删除安全组规则</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack security group rule delete 规则id 
+</span></span></code></pre></div><h3 id="在安全组中添加规则">在安全组中添加规则</h3>
+<p>安全组规则非常多，常见的有icmp，tcp，udp，dns等等。</p>
+<p>安全组规则在添加时需要指定方向，分为入口(ingress)和出口(egress)。</p>
+<p>添加安全组规则时还需要选择策略类型，指定如icmp，igmp，tcp，udp的一种。</p>
+<p>安全组规则当然还可以指定端口范围或ip，当你需要指定端口范围时，使用dst-port参数，当你需要指定ip时，使用remote-ip参数。需要说明的是，如果你希望指定一个端口，那么dst-port的参数可用是这样 22:22，这就指定22端口。</p>
+<p>以下演示从入口方向放行所有icmp，tcp，udp规则</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack security group rule create --protocol icmp --ingress 安全组name/id
+</span></span><span class="line"><span class="cl">openstack security group rule create --protocol tcp --ingress 安全组name/id
+</span></span><span class="line"><span class="cl">openstack security group rule create --protocol udp --ingress 安全组name/id
+</span></span></code></pre></div><h3 id="创建云主机">创建云主机</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack server create --image 镜像id/name --flavor 云主机类型name/id --network 网络name/id 云主机name
+</span></span></code></pre></div><p>参数说明：</p>
+<ul>
+<li>image 使用的镜像</li>
+<li>flavor 创建云主机应用的云主机类型</li>
+<li>network 将创建的云主机连接到的网络</li>
+</ul>
+<p>更多可用参数不一一列举。</p>
+<h3 id="列出云主机">列出云主机</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack server list
+</span></span></code></pre></div><h3 id="查看云主机的控制台日志">查看云主机的控制台日志</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack console log show 云主机name/id
+</span></span></code></pre></div><h3 id="显示云主机的远程控制台-url">显示云主机的远程控制台 URL</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack console url show 云主机name/id
+</span></span></code></pre></div><h3 id="云主机的重启关机启动暂停取消暂停">云主机的重启，关机，启动，暂停，取消暂停</h3>
+<p>说实话我很难区分暂停，挂起，释放。我相信你也是一样，所以让我来解释一下。</p>
+<p>暂停，是指将虚拟机的状态保存到内存，暂停中的虚拟机仍然以冻结状态运行。</p>
+<p>挂起，这是虚拟机管理器级别的操作，是指将虚拟机的内存保存到磁盘中，会释放虚拟机在宿主机中的资源，由libvirt完成该操作。内存信息会被保存到 /var/lib/libvirt/qemu/save/ 下。当再次启动该虚拟机时，会从该目录下使用内存文件启动，启动完成后，该文件会自动消失。</p>
+<p>释放，也叫搁置，目的时将长时间不使用的虚拟机从底层释放从而节约服务器资源。一些长时间不使用的虚拟机，即使处于关机状态，仍然会占用集群资源，因此可用释放来释放资源。</p>
+<p>如果虚拟机使用glance镜像创建，则创建一个快照并存储至glance，然后将虚拟机占用的资源从集群中删除；如果虚拟机从cinder存储中创建，则删除虚拟机占用的物理资源但保留磁盘，磁盘状态为保留。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack server reboot 云主机name/id
+</span></span><span class="line"><span class="cl">openstack server stop 云主机name/id
+</span></span><span class="line"><span class="cl">openstack server start 云主机name/id
+</span></span><span class="line"><span class="cl">openstack server pause 云主机name/id
+</span></span><span class="line"><span class="cl">openstack server unpause 云主机name/id
+</span></span></code></pre></div><h3 id="云主机的挂起取消挂起">云主机的挂起，取消挂起</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack server suspend 云主机name/id
+</span></span><span class="line"><span class="cl">openstack server resume 云主机name/id
+</span></span></code></pre></div><h3 id="云主机的释放和取消释放">云主机的释放和取消释放</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack server shelve 云主机name/id
+</span></span><span class="line"><span class="cl">openstack server unshelve 云主机name/id
+</span></span></code></pre></div><h3 id="云主机创建快照">云主机创建快照</h3>
+<p>在创建云主机快照时，云主机状态应为关机。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack server image create 云主机name/id --name 快照name
+</span></span></code></pre></div><p>如果不指定&ndash;name，则默认使用云主机name作为快照name</p>
+<h3 id="调整云主机大小">调整云主机大小</h3>
+<p>你需要确定nova中配置了scheduler_default_filters参数。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack server resize 云主机name/id --flavor 云主机类型name/id
+</span></span><span class="line"><span class="cl">openstack server resize --confirm 云主机名称
+</span></span></code></pre></div><h3 id="云主机挂载云硬盘">云主机挂载云硬盘</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack server add volume 云主机name/id 磁盘id/name
+</span></span></code></pre></div><h3 id="创建密钥对">创建密钥对</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack keypair create test
+</span></span></code></pre></div><p>可用重定向将输出结果导入到文件中。</p>
+<h3 id="创建云主机使用密钥对">创建云主机使用密钥对</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack server create --image cirros --flavor os --key-name test 云主机name
+</span></span></code></pre></div><p>这里的key-name参数指定的就是密钥对。</p>
+<h3 id="使用密钥连接云主机">使用密钥连接云主机</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">ssh -i test.pem cirros@172.17.0.1
+</span></span></code></pre></div><p>这里的test.pem就是创建密钥对时，将输出重定向保存的文件。</p>
+<h3 id="创建浮动ip">创建浮动ip</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack floating ip create 网络name/id --floating-ip-address 172.17.0.1
+</span></span></code></pre></div><p>如果不指定floating-ip-address，则由dhcp服务自动分发ip。</p>
+<h3 id="云主机绑定浮动ip">云主机绑定浮动ip</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack server add floating ip 云主机name/id 浮动ip地址
+</span></span></code></pre></div><p>例如：</p>
+<p>openstack server add floating ip cirros 172.17.0.2</p>
+<h2 id="块存储cinder">块存储(cinder)</h2>
+<h3 id="显示所有卷">显示所有卷</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack volume list
+</span></span></code></pre></div><h3 id="创建新卷">创建新卷</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack volume create 卷name --size 1 --type __DEFAULT__
+</span></span></code></pre></div><p>参数说明：</p>
+<ul>
+<li>size 指定卷大小，单位为GB，此为必须参数</li>
+<li>type 指定卷类型</li>
+<li>read-only 指定卷为只读，默认情况下为可读写</li>
+<li>image 将镜像作为卷资源添加至卷中</li>
+</ul>
+<h3 id="创建卷类型">创建卷类型</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack volume type create 卷类型name
+</span></span></code></pre></div><h3 id="将卷连接到云主机">将卷连接到云主机</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack server add volume 云主机name/id 卷name/id
+</span></span></code></pre></div><p>可选参数：</p>
+<ul>
+<li>device 指定卷内部名称</li>
+<li>enable-delete-on-termination 意思是云主机被清除后删除卷</li>
+<li>disable-delete-on-termination 云主机被清除后保留卷</li>
+</ul>
+<h3 id="扩展卷">扩展卷</h3>
+<p>在卷状态为 available的前提下。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack volume set 卷name/id --size 调整的大小
+</span></span></code></pre></div><p>实际上set可以更新很多volume的属性，以下是部分可选参数。</p>
+<ul>
+<li>name 设置卷name</li>
+<li>size 以GB为单位设置卷大小</li>
+<li>type 设置卷类型</li>
+</ul>
+<h2 id="对象存储swift">对象存储(swift)</h2>
+<p>在开始之前，你需要自行了解什么是对象存储，以及对象存储是如何存储数据的。</p>
+<h3 id="创建容器">创建容器</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack container create 容器name
+</span></span></code></pre></div><h3 id="列出容器">列出容器</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack container list
+</span></span></code></pre></div><h3 id="查看容器详细信息">查看容器详细信息</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack container show 容器name/id
+</span></span></code></pre></div><h3 id="创建对象上传对象">创建对象，上传对象</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack object create create 容器name/id 文件name/id 
+</span></span></code></pre></div><h3 id="列出容器中的对象">列出容器中的对象</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack object list 容器name/id
+</span></span></code></pre></div><h3 id="查看对象详情">查看对象详情</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack object show 容器name/id 对象name/id
+</span></span></code></pre></div><h3 id="从容器中下载对象">从容器中下载对象</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack object save 容器name/id 对象name/id
+</span></span></code></pre></div><h3 id="删除对象">删除对象</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack object delete 容器name/id 对象name/id
+</span></span></code></pre></div><h3 id="删除容器">删除容器</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack container delete 容器name/id
+</span></span></code></pre></div><p>只能删除空容器</p>
+<h3 id="递归删除容器">递归删除容器</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack container delete 容器name/id -r
+</span></span></code></pre></div><p>参数说明：</p>
+<ul>
+<li>r  是recursive的简写，指先删除容器内存储的对象，再删除容器本身</li>
+</ul>
+<h2 id="模板编排服务heat">模板编排服务（heat）</h2>
+<p>orchestration服务可以实现对多个组合云应用的编排，这个服务支持通过REST API 使用原生HOT模板。</p>
+<p>这些灵活的模板语言使应用程序开发人员能够借以描述openstack的资源类型，如实例，浮动ip地址，卷，安全组，用户等等。这些资源一旦创建，将被称为stacks，可以通过heat服务加以管理。</p>
+<h3 id="编排创建cinder卷">编排创建cinder卷</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">$ cat cinder.yaml
+</span></span><span class="line"><span class="cl">heat_template_version: &#34;2018-08-31&#34;
+</span></span><span class="line"><span class="cl">resources: 
+</span></span><span class="line"><span class="cl">  Volume_1: 
+</span></span><span class="line"><span class="cl">    type: &#34;OS::Cinder::Volume&#34;
+</span></span><span class="line"><span class="cl">    properties: 
+</span></span><span class="line"><span class="cl">      name: heat_cinder1
+</span></span><span class="line"><span class="cl">      size: 2
+</span></span><span class="line"><span class="cl">      volume_type: &#34;__DEFAULT__&#34;
+</span></span><span class="line"><span class="cl">#创建堆栈，并创建volume
+</span></span><span class="line"><span class="cl">openstack stack create -t cinder.yaml cinder-1
+</span></span></code></pre></div><h3 id="编排创建swift容器">编排创建swift容器</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">$ cat swift.yaml
+</span></span><span class="line"><span class="cl">heat_template_version: &#34;2018-08-31&#34;
+</span></span><span class="line"><span class="cl">resources: 
+</span></span><span class="line"><span class="cl">  Container_1: 
+</span></span><span class="line"><span class="cl">    type: &#34;OS::Swift::Container&#34;
+</span></span><span class="line"><span class="cl">    properties: 
+</span></span><span class="line"><span class="cl">      name: heat_swift
+</span></span><span class="line"><span class="cl">      &#34;X-Container-Write&#34;: true
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#创建堆栈,并创建swift
+</span></span><span class="line"><span class="cl">$ openstack stack create -t swift.yaml swift-1（栈名称）
+</span></span></code></pre></div><h3 id="编排创建network和subnet">编排创建network和subnet</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">heat_template_version: &#34;2018-08-31&#34;
+</span></span><span class="line"><span class="cl">resources: 
+</span></span><span class="line"><span class="cl">  Network_1: 
+</span></span><span class="line"><span class="cl">    type: &#34;OS::Neutron::Net&#34;
+</span></span><span class="line"><span class="cl">    properties: 
+</span></span><span class="line"><span class="cl">      admin_state_up: true
+</span></span><span class="line"><span class="cl">      name: Heat_Network
+</span></span><span class="line"><span class="cl">      shared: true
+</span></span><span class="line"><span class="cl">  Subnet_1: 
+</span></span><span class="line"><span class="cl">    type: &#34;OS::Neutron::Subnet&#34;
+</span></span><span class="line"><span class="cl">    properties: 
+</span></span><span class="line"><span class="cl">      name: &#34;Heat-Subnet&#34;
+</span></span><span class="line"><span class="cl">      ip_version: 4
+</span></span><span class="line"><span class="cl">      cidr: &#34;172.17.0.0/24&#34;
+</span></span><span class="line"><span class="cl">      network_id: 
+</span></span><span class="line"><span class="cl">        get_resource: Network_1
+</span></span><span class="line"><span class="cl">      
+</span></span><span class="line"><span class="cl"># #创建堆栈,并创建网络
+</span></span><span class="line"><span class="cl">$ openstack stack create -t network.yaml network（栈名称）
+</span></span></code></pre></div><h3 id="编排创建flavor">编排创建flavor</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">$ cat falvor.yaml
+</span></span><span class="line"><span class="cl">heat_template_version: &#34;2018-08-31&#34;
+</span></span><span class="line"><span class="cl">resources:
+</span></span><span class="line"><span class="cl">  Nova_flavor:
+</span></span><span class="line"><span class="cl">    type: OS::Nova::Flavor
+</span></span><span class="line"><span class="cl">    properties:
+</span></span><span class="line"><span class="cl">      name: os.flavor
+</span></span><span class="line"><span class="cl">      disk: 20
+</span></span><span class="line"><span class="cl">      is_public: True
+</span></span><span class="line"><span class="cl">      ram: 1024
+</span></span><span class="line"><span class="cl">      vcpus: 2
+</span></span><span class="line"><span class="cl">      
+</span></span><span class="line"><span class="cl"># 创建堆栈,并创建falvor
+</span></span><span class="line"><span class="cl">$ openstack stack create -t falvor.yaml flavor
+</span></span></code></pre></div><h3 id="编排创建云主机">编排创建云主机</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">$ cat server.yaml
+</span></span><span class="line"><span class="cl">heat_template_version: &#34;2018-08-31&#34;
+</span></span><span class="line"><span class="cl">resources:
+</span></span><span class="line"><span class="cl">  Server_1:
+</span></span><span class="line"><span class="cl">    type: &#34;OS::Nova::Server&#34;
+</span></span><span class="line"><span class="cl">    properties:
+</span></span><span class="line"><span class="cl">      networks:
+</span></span><span class="line"><span class="cl">        - network: &#34;Heat_Network&#34;
+</span></span><span class="line"><span class="cl">      flavor: &#34;os.flavor&#34;
+</span></span><span class="line"><span class="cl">      name: Heat_Server
+</span></span><span class="line"><span class="cl">      image: &#34;cirros-0.6.1-x86_64-disk.img&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># #创建堆栈,并创建server
+</span></span><span class="line"><span class="cl">$ openstack stack create -t server.yaml server（栈名称）
+</span></span></code></pre></div><h3 id="编排创建user">编排创建user</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">$ cat user.yaml
+</span></span><span class="line"><span class="cl">heat_template_version: &#34;2018-08-31&#34;
+</span></span><span class="line"><span class="cl">resources:
+</span></span><span class="line"><span class="cl">  user:
+</span></span><span class="line"><span class="cl">    type: OS::Keystone::User
+</span></span><span class="line"><span class="cl">    properties:
+</span></span><span class="line"><span class="cl">      name: &#34;Heat-User&#34;
+</span></span><span class="line"><span class="cl">      password: &#34;123456&#34;
+</span></span><span class="line"><span class="cl">      domain: &#34;default&#34;
+</span></span><span class="line"><span class="cl">      default_project: &#34;admin&#34;
+</span></span><span class="line"><span class="cl">      roles: [{&#34;role&#34;: admin, &#34;project&#34;: admin}]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 创建堆栈,并创建user
+</span></span><span class="line"><span class="cl">$ openstack stack create -t user.yaml user（栈名称）
+</span></span></code></pre></div><h3 id="列出所有堆栈">列出所有堆栈</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack stack list
+</span></span></code></pre></div><h3 id="列出堆栈详细信息">列出堆栈详细信息</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack stack show 堆栈name/id
+</span></span></code></pre></div><h3 id="删除堆栈">删除堆栈</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">openstack stack delete 堆栈name/id -y
+</span></span></code></pre></div><h2 id="文件共享服务manila">文件共享服务(manila)</h2>
+<p>openstack共享文件系统服务manila为虚拟机提供文件存储，简单点说，和云盘差不多，但是这是一个专用于虚拟机的云盘。</p>
+<p>在开始之前，我浅浅的解释一下什么是DHSS。在部署manila时，有两个驱动模式可选，其一是不使用驱动程序来支持共享服务器的管理，在这种模式下，需要部署nfs服务器和一块manila卷组的附加磁盘，这种模式称为DHSS=False模式；其二，选择将manila与管理共享服务器的后端驱动程序一起运行，因此需要安装nova，glance，neutron一同管理的驱动程序，和块存储服务cinder来创建共享，</p>
+<p>这种模式称为DHSS=True模式。</p>
+<p>在官方示例中，为简单期间，配置使用DHSS=False模式。但是个人觉得DHSS=True的配置更为简单，仅仅只是配置项多了一部分，换来集中的管理和磁盘的节约，并且在某些发行版中，manila服务无法正确运行LVM驱动程序。</p>
+<h3 id="创建禁用dhss的默认共享类型">创建禁用DHSS的默认共享类型</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">manila type-create default_share_type False
+</span></span></code></pre></div><h3 id="列出共享类型">列出共享类型</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">manila type-list
+</span></span></code></pre></div><h3 id="创建共享目录">创建共享目录</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">manila create NFS 1 --name 共享名称
+</span></span></code></pre></div><p>参数说明：</p>
+<ul>
+<li>share_protocol 共享协议（NFS,CIFS,CephFS,GlusterFS,HDFS,MAPRFS）</li>
+<li>size 共享大小，单位为GB</li>
+<li>&ndash;name 共享名称</li>
+</ul>
+<h3 id="列出共享目录">列出共享目录</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">manila list
+</span></span></code></pre></div><h3 id="查看共享目录详情">查看共享目录详情</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">manila show 共享名称
+</span></span></code></pre></div><h3 id="允许访问共享目录">允许访问共享目录</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">manila access-allow 共享name/id ip 172.17.0.0/24
+</span></span></code></pre></div><p>参数说明：</p>
+<ul>
+<li>share 共享的名称或者是id</li>
+<li>access_type 访问规则类型，仅限于ip，user，支持cert或cephx</li>
+<li>access_to 定义访问的网段ip</li>
+<li>access-level 定义共享访问权限，rw，ro均受支持，不指定时，默认为rw。</li>
+</ul>
+<h3 id="查看共享目录权限和开放网段">查看共享目录权限和开放网段</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">manila access-list 共享name/id
+</span></span></code></pre></div><h3 id="挂载共享目录">挂载共享目录</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">manila show 共享name/id |grep path
+</span></span></code></pre></div><p>计算节点挂载共享目录</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">mount -t nfs 172.17.0.1:/path /mnt/
+</span></span></code></pre></div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=1011-02-01&#32;08:48:56>更新于 2023-02-01&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://feyncode.github.io/posts/openstack%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E8%80%83/" data-title="Openstack命令行参考" data-hashtags="openstack"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://feyncode.github.io/posts/openstack%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E8%80%83/" data-hashtag="openstack"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://feyncode.github.io/posts/openstack%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E8%80%83/" data-title="Openstack命令行参考"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/openstack/">openstack</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/posts/python%E8%B0%83%E7%94%A8openstackapi/" class="prev" rel="prev" title="Python调用OpenStackAPI"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Python调用OpenStackAPI</a></div>
+</div>
+<div id="comments"><div id="utterances" class="comment"></div><noscript>
+        Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/" rel="external nofollow noopener noreferrer">Utterances</a>.
+      </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.108.0">Hugo</a> 强力驱动 
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="/">feyncode</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/lunr/lunr.min.js" defer></script><script src="/lib/lunr/lunr.stemmer.support.min.js" defer></script><script src="/lib/lunr/lunr.zh.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/twemoji/twemoji.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"feyncode/hugotalks"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"search":{"highlightTag":"em","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":30},"twemoji":true};</script><script src="/js/theme.min.js" defer></script></body>
+</html>
