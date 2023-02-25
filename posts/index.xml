@@ -4,15 +4,7 @@
     <link>http://feyncode.github.io/posts/</link>
     <description>所有文章 | Feyncode的博客 - 每天进步一点点</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>feyncode@gmail.com (feyncode)</managingEditor>
-      <webMaster>feyncode@gmail.com (feyncode)</webMaster><lastBuildDate>Thu, 02 Feb 2023 13:40:04 &#43;0800</lastBuildDate><atom:link href="http://feyncode.github.io/posts/" rel="self" type="application/rss+xml" /><item>
-  <title>2022年国赛云计算私有云</title>
-  <link>http://feyncode.github.io/posts/2022%E5%B9%B4%E5%9B%BD%E8%B5%9B%E4%BA%91%E8%AE%A1%E7%AE%97%E7%A7%81%E6%9C%89%E4%BA%91/</link>
-  <pubDate>Thu, 02 Feb 2023 13:40:04 &#43;0800</pubDate>
-  <author>feyncode</author>
-  <guid>http://feyncode.github.io/posts/2022%E5%B9%B4%E5%9B%BD%E8%B5%9B%E4%BA%91%E8%AE%A1%E7%AE%97%E7%A7%81%E6%9C%89%E4%BA%91/</guid>
-  <description><![CDATA[]]></description>
-</item>
-<item>
+      <webMaster>feyncode@gmail.com (feyncode)</webMaster><lastBuildDate>Wed, 01 Feb 2023 09:48:11 &#43;0800</lastBuildDate><atom:link href="http://feyncode.github.io/posts/" rel="self" type="application/rss+xml" /><item>
   <title>Python运维开发用户管理</title>
   <link>http://feyncode.github.io/posts/python%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/</link>
   <pubDate>Wed, 01 Feb 2023 09:48:11 &#43;0800</pubDate>
